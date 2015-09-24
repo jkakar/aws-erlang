@@ -1,34 +1,111 @@
 -module(aws_client).
+-behaviour(gen_server).
 
--export([make_client/3]).
+-define(CREDENTIAL_URL, <<"http://169.254.169.254/latest/meta-data/iam/security-credentials/">>).
 
+% behaviour funs
+-export([init/1, terminate/2, code_change/3,
+         handle_call/3, handle_cast/2, handle_info/2]).
+
+-export([start_link/0, stop/0,
+         make_client/1, make_client/2, make_client/3,
+         get_creds/1]).
+
+-record(state, {
+         }).
 %%====================================================================
 %% API
 %%====================================================================
 
-make_client(AccessKeyID, SecretAccessKey, Region)
-  when is_binary(AccessKeyID), is_binary(SecretAccessKey), is_binary(Region) ->
-    #{access_key_id => AccessKeyID,
-      secret_access_key => SecretAccessKey,
-      region => Region,
-      endpoint => <<"amazonaws.com">>,
-      service => undefined}.
+start_link() ->
+  gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+stop() ->
+  gen_server:stop(?MODULE).
+
+make_client(Opts) ->
+  make_client(metadata, Opts).
+make_client(metadata, Opts) ->
+  gen_server:call(?MODULE, {add_creds, metadata, Opts}).
+make_client(AccessKey, Secret, Opts) ->
+  gen_server:call(?MODULE, {add_creds, {static, AccessKey, Secret}, Opts}).
+
+get_creds(Ref) ->
+  case ets:lookup(creds, Ref) of
+    [{_, Creds}] -> Creds;
+    [] -> undefined
+  end.
 
 %%====================================================================
-%% Unit tests
+%% Behaviour
 %%====================================================================
+init(_Args) ->
+  ets:new(creds, [set, named_table]),
+  ets:new(creds_dedup, [set, named_table]),
+  {ok, #state{}}.
 
--ifdef(TEST).
--include_lib("eunit/include/eunit.hrl").
+terminate(_Reason, _State) ->
+  ok.
 
-%% make_client/0 returns a clienturation map with default values.
-make_client_test() ->
-    ?assertEqual(#{access_key_id => <<"access-key-id">>,
-                   secret_access_key => <<"secret-access-key">>,
-                   region => <<"region">>,
-                   endpoint => <<"amazonaws.com">>,
-                   service => undefined},
-                 make_client(<<"access-key-id">>, <<"secret-access-key">>,
-                             <<"region">>)).
+handle_call({add_creds, metadata, Opts}, _From, State) ->
+  case ets:lookup(creds_dedup, metadata) of
+    [{_, Ref}] -> {reply, {ok, Ref}, State};
+    [] ->
+      {ok, Role} = get_role(),
+      {ok, AccessKey, SecretKey, _Expiry} = get_metadata_creds(Role),
+      {Region, Endpoint} = parse_opts(Opts),
+      Ref = make_ref(),
+      true = ets:insert(creds_dedup, {metadata, Ref}),
+      true = ets:insert(creds, {Ref, #{access_key => AccessKey,
+                                       secret_key => SecretKey,
+                                       region     => Region,
+                                       endpoint   => Endpoint}}),
+      {reply, {ok, Ref}, State}
+  end;
+handle_call({add_creds, {static, AccessKey, SecretKey}, Opts}, _From, State) ->
+  case ets:lookup(creds_dedup, {static, AccessKey}) of
+    [{_, Ref}] -> {reply, {ok, Ref}, State};
+    [] ->
+      {Region, Endpoint} = parse_opts(Opts),
+      Ref = make_ref(),
+      true = ets:insert(creds_dedup, {{static, AccessKey}, Ref}),
+      true = ets:insert(creds, {Ref, #{access_key => AccessKey,
+                                       secret_key => SecretKey,
+                                       region     => Region,
+                                       endpoint   => Endpoint}}),
+      {reply, {ok, Ref}, State}
+  end;
+handle_call(Args, _From, State) ->
+  io:format("Unknown args ~p~n", [Args]),
+  {noreply, State}.
 
--endif.
+handle_cast(_Message, State) ->
+  {noreply, State}.
+
+handle_info(_Message, State) ->
+  {noreply, State}.
+
+code_change(_Prev, State, _Extra) ->
+  {ok, State}.
+
+%%====================================================================
+%% Helper funcs
+%%====================================================================
+parse_opts(Opts) ->
+  Region = proplists:get_value(region, Opts, <<"us-east-1">>),
+  Endpoint = proplists:get_value(endpoint, Opts, <<"amazonaws.com">>),
+  {Region, Endpoint}.
+
+
+get_role() ->
+  {ok, 200, _, ClientRef} = hackney:get(?CREDENTIAL_URL),
+  hackney:body(ClientRef).
+
+
+get_metadata_creds(Role) ->
+  {ok, 200, _, ClientRef} = hackney:get([?CREDENTIAL_URL, Role]),
+  {ok, Body} = hackney:body(ClientRef),
+  Map = jsx:decode(Body, [return_maps]),
+  {ok, maps:get(<<"AccessKeyId">>, Map),
+       maps:get(<<"SecretAccessKey">>, Map),
+       maps:get(<<"Expiration">>, Map)}.

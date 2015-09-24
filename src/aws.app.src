@@ -2,6 +2,7 @@
  [{description, "AWS clients for Erlang."}
  ,{vsn, "0.1.0"}
  ,{registered, []}
+ ,{mod, {aws_client_app, []}}
  ,{applications,
     [kernel
     ,stdlib
