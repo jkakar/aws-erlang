@@ -2,6 +2,9 @@
 -behaviour(gen_server).
 
 -define(CREDENTIAL_URL, <<"http://169.254.169.254/latest/meta-data/iam/security-credentials/">>).
+%% as per http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#instance-metadata-security-credentials
+%% We make new credentials available at least five minutes prior to the expiration of the old credentials.
+-define(ALERT_BEFORE_EXPIRY, 4 * 60).
 
 % behaviour funs
 -export([init/1, terminate/2, code_change/3,
@@ -52,7 +55,7 @@ handle_call({add_creds, metadata, Opts}, _From, State) ->
     [{_, Ref}] -> {reply, {ok, Ref}, State};
     [] ->
       {ok, Role} = get_role(),
-      {ok, AccessKey, SecretKey, _Expiry} = get_metadata_creds(Role),
+      {ok, AccessKey, SecretKey, Expiry} = get_metadata_creds(Role),
       {Region, Endpoint} = parse_opts(Opts),
       Ref = make_ref(),
       true = ets:insert(creds_dedup, {metadata, Ref}),
@@ -60,6 +63,7 @@ handle_call({add_creds, metadata, Opts}, _From, State) ->
                                        secret_key => SecretKey,
                                        region     => Region,
                                        endpoint   => Endpoint}}),
+      setup_update_callback(Expiry, Ref, Role),
       {reply, {ok, Ref}, State}
   end;
 handle_call({add_creds, {static, AccessKey, SecretKey}, Opts}, _From, State) ->
@@ -81,6 +85,14 @@ handle_call(Args, _From, State) ->
 
 handle_cast(_Message, State) ->
   {noreply, State}.
+
+handle_info({refresh_metadata, Ref, Role}, State) ->
+  {ok, AccessKey, SecretKey, Expiry} = get_metadata_creds(Role),
+  Creds = get_metadata_creds(Ref),
+  true = ets:insert(creds, {Ref, Creds#{access_key => AccessKey,
+                                        secret_key => SecretKey}}),
+  setup_update_callback(Expiry, Ref, Role),
+  {noreply, State};
 
 handle_info(_Message, State) ->
   {noreply, State}.
@@ -109,3 +121,12 @@ get_metadata_creds(Role) ->
   {ok, maps:get(<<"AccessKeyId">>, Map),
        maps:get(<<"SecretAccessKey">>, Map),
        maps:get(<<"Expiration">>, Map)}.
+
+setup_update_callback(Timestamp, Ref, Role) ->
+  AlertAt = seconds_until_timestamp(Timestamp) - ?ALERT_BEFORE_EXPIRY,
+  erlang:send_after(AlertAt, ?MODULE, {refresh_metadata, Ref, Role}).
+
+seconds_until_timestamp(Timestamp) ->
+  calendar:datetime_to_gregorian_seconds(iso8601:parse(Timestamp))
+  - (erlang:system_time(seconds)
+     + calendar:datetime_to_gregorian_seconds({{1970,1,1},{0,0,0}})).
