@@ -11,8 +11,8 @@
 %% Generate headers with an AWS signature version 4 for the specified
 %% request.
 sign_request(Client, Method, URL, Headers, Body) ->
-    AccessKeyID = maps:get(access_key_id, Client),
-    SecretAccessKey = maps:get(secret_access_key, Client),
+    AccessKeyID = maps:get(access_key, Client),
+    SecretAccessKey = maps:get(secret_key, Client),
     Region = maps:get(region, Client),
     Service = maps:get(service, Client),
     sign_request(AccessKeyID, SecretAccessKey, Region, Service, Method, URL,

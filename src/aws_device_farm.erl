@@ -65,210 +65,211 @@
 
 %% @doc Creates a device pool.
 create_device_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_device_pool(Client, Input, []).
 create_device_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateDevicePool">>, Input, Options).
 
 %% @doc Creates a new project.
 create_project(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_project(Client, Input, []).
 create_project(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateProject">>, Input, Options).
 
 %% @doc Uploads an app or test scripts.
 create_upload(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_upload(Client, Input, []).
 create_upload(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateUpload">>, Input, Options).
 
 %% @doc Returns the number of unmetered iOS and/or unmetered Android devices
 %% that have been purchased by the account.
 get_account_settings(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_account_settings(Client, Input, []).
 get_account_settings(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetAccountSettings">>, Input, Options).
 
 %% @doc Gets information about a unique device type.
 get_device(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_device(Client, Input, []).
 get_device(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetDevice">>, Input, Options).
 
 %% @doc Gets information about a device pool.
 get_device_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_device_pool(Client, Input, []).
 get_device_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetDevicePool">>, Input, Options).
 
 %% @doc Gets information about compatibility with a device pool.
 get_device_pool_compatibility(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_device_pool_compatibility(Client, Input, []).
 get_device_pool_compatibility(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetDevicePoolCompatibility">>, Input, Options).
 
 %% @doc Gets information about a job.
 get_job(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_job(Client, Input, []).
 get_job(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetJob">>, Input, Options).
 
 %% @doc Gets information about a project.
 get_project(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_project(Client, Input, []).
 get_project(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetProject">>, Input, Options).
 
 %% @doc Gets information about a run.
 get_run(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_run(Client, Input, []).
 get_run(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetRun">>, Input, Options).
 
 %% @doc Gets information about a suite.
 get_suite(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_suite(Client, Input, []).
 get_suite(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetSuite">>, Input, Options).
 
 %% @doc Gets information about a test.
 get_test(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_test(Client, Input, []).
 get_test(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetTest">>, Input, Options).
 
 %% @doc Gets information about an upload.
 get_upload(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_upload(Client, Input, []).
 get_upload(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetUpload">>, Input, Options).
 
 %% @doc Gets information about artifacts.
 list_artifacts(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_artifacts(Client, Input, []).
 list_artifacts(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListArtifacts">>, Input, Options).
 
 %% @doc Gets information about device pools.
 list_device_pools(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_device_pools(Client, Input, []).
 list_device_pools(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListDevicePools">>, Input, Options).
 
 %% @doc Gets information about unique device types.
 list_devices(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_devices(Client, Input, []).
 list_devices(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListDevices">>, Input, Options).
 
 %% @doc Gets information about jobs.
 list_jobs(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_jobs(Client, Input, []).
 list_jobs(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListJobs">>, Input, Options).
 
 %% @doc Gets information about projects.
 list_projects(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_projects(Client, Input, []).
 list_projects(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListProjects">>, Input, Options).
 
 %% @doc Gets information about runs.
 list_runs(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_runs(Client, Input, []).
 list_runs(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListRuns">>, Input, Options).
 
 %% @doc Gets information about samples.
 list_samples(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_samples(Client, Input, []).
 list_samples(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListSamples">>, Input, Options).
 
 %% @doc Gets information about suites.
 list_suites(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_suites(Client, Input, []).
 list_suites(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListSuites">>, Input, Options).
 
 %% @doc Gets information about tests.
 list_tests(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_tests(Client, Input, []).
 list_tests(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTests">>, Input, Options).
 
 %% @doc Gets information about unique problems.
 list_unique_problems(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_unique_problems(Client, Input, []).
 list_unique_problems(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListUniqueProblems">>, Input, Options).
 
 %% @doc Gets information about uploads.
 list_uploads(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_uploads(Client, Input, []).
 list_uploads(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListUploads">>, Input, Options).
 
 %% @doc Schedules a run.
 schedule_run(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     schedule_run(Client, Input, []).
 schedule_run(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ScheduleRun">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"devicefarm">>},
     Host = aws_util:binary_join([<<"devicefarm.">>,
                                  maps:get(region, Client1),

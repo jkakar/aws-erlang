@@ -80,27 +80,27 @@
 %% To activate a finished pipeline, modify the end date for the pipeline and
 %% then activate it.
 activate_pipeline(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     activate_pipeline(Client, Input, []).
 activate_pipeline(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ActivatePipeline">>, Input, Options).
 
 %% @doc Adds or modifies tags for the specified pipeline.
 add_tags(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_tags(Client, Input, []).
 add_tags(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddTags">>, Input, Options).
 
 %% @doc Creates a new, empty pipeline. Use <a>PutPipelineDefinition</a> to
 %% populate the pipeline.
 create_pipeline(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_pipeline(Client, Input, []).
 create_pipeline(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreatePipeline">>, Input, Options).
 
 %% @doc Deactivates the specified running pipeline. The pipeline is set to
@@ -111,10 +111,10 @@ create_pipeline(Client, Input, Options)
 %% the pipeline resumes from the last completed execution. Optionally, you
 %% can specify the date and time to resume the pipeline.
 deactivate_pipeline(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deactivate_pipeline(Client, Input, []).
 deactivate_pipeline(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeactivatePipeline">>, Input, Options).
 
 %% @doc Deletes a pipeline, its pipeline definition, and its run history. AWS
@@ -127,20 +127,20 @@ deactivate_pipeline(Client, Input, Options)
 %% individual components. Components that are paused by <a>SetStatus</a> can
 %% be resumed.
 delete_pipeline(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_pipeline(Client, Input, []).
 delete_pipeline(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeletePipeline">>, Input, Options).
 
 %% @doc Gets the object definitions for a set of objects associated with the
 %% pipeline. Object definitions are composed of a set of fields that define
 %% the properties of the object.
 describe_objects(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_objects(Client, Input, []).
 describe_objects(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeObjects">>, Input, Options).
 
 %% @doc Retrieves metadata about one or more pipelines. The information
@@ -154,39 +154,39 @@ describe_objects(Client, Input, Options)
 %% To retrieve the full pipeline definition instead of metadata about the
 %% pipeline, call <a>GetPipelineDefinition</a>.
 describe_pipelines(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_pipelines(Client, Input, []).
 describe_pipelines(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribePipelines">>, Input, Options).
 
 %% @doc Task runners call <code>EvaluateExpression</code> to evaluate a
 %% string in the context of the specified object. For example, a task runner
 %% can evaluate SQL queries stored in Amazon S3.
 evaluate_expression(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     evaluate_expression(Client, Input, []).
 evaluate_expression(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"EvaluateExpression">>, Input, Options).
 
 %% @doc Gets the definition of the specified pipeline. You can call
 %% <code>GetPipelineDefinition</code> to retrieve the pipeline definition
 %% that you provided using <a>PutPipelineDefinition</a>.
 get_pipeline_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_pipeline_definition(Client, Input, []).
 get_pipeline_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetPipelineDefinition">>, Input, Options).
 
 %% @doc Lists the pipeline identifiers for all active pipelines that you have
 %% permission to access.
 list_pipelines(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_pipelines(Client, Input, []).
 list_pipelines(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListPipelines">>, Input, Options).
 
 %% @doc Task runners call <code>PollForTask</code> to receive a task to
@@ -206,10 +206,10 @@ list_pipelines(Client, Input, Options)
 %% <code>workerGroup</code> until it receives a response, and this can take
 %% up to 90 seconds.
 poll_for_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     poll_for_task(Client, Input, []).
 poll_for_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PollForTask">>, Input, Options).
 
 %% @doc Adds tasks, schedules, and preconditions to the specified pipeline.
@@ -226,27 +226,27 @@ poll_for_task(Client, Input, Options)
 %% <code>PutPipelineDefinition</code> action and returned by the
 %% <a>GetPipelineDefinition</a> action.
 put_pipeline_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_pipeline_definition(Client, Input, []).
 put_pipeline_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutPipelineDefinition">>, Input, Options).
 
 %% @doc Queries the specified pipeline for the names of objects that match
 %% the specified set of conditions.
 query_objects(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     query_objects(Client, Input, []).
 query_objects(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"QueryObjects">>, Input, Options).
 
 %% @doc Removes existing tags from the specified pipeline.
 remove_tags(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     remove_tags(Client, Input, []).
 remove_tags(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RemoveTags">>, Input, Options).
 
 %% @doc Task runners call <code>ReportTaskProgress</code> when assigned a
@@ -263,10 +263,10 @@ remove_tags(Client, Input, Options)
 %% reassigns the task in a subsequent response to <a>PollForTask</a>. Task
 %% runners should call <code>ReportTaskProgress</code> every 60 seconds.
 report_task_progress(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     report_task_progress(Client, Input, []).
 report_task_progress(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ReportTaskProgress">>, Input, Options).
 
 %% @doc Task runners call <code>ReportTaskRunnerHeartbeat</code> every 15
@@ -275,10 +275,10 @@ report_task_progress(Client, Input, Options)
 %% web service can use this call to detect when the task runner application
 %% has failed and restart a new instance.
 report_task_runner_heartbeat(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     report_task_runner_heartbeat(Client, Input, []).
 report_task_runner_heartbeat(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ReportTaskRunnerHeartbeat">>, Input, Options).
 
 %% @doc Requests that the status of the specified physical or logical
@@ -288,10 +288,10 @@ report_task_runner_heartbeat(Client, Input, Options)
 %% You cannot perform this operation on <code>FINISHED</code> pipelines and
 %% attempting to do so returns <code>InvalidRequestException</code>.
 set_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_status(Client, Input, []).
 set_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetStatus">>, Input, Options).
 
 %% @doc Task runners call <code>SetTaskStatus</code> to notify AWS Data
@@ -301,26 +301,27 @@ set_status(Client, Input, Options)
 %% for tasks that are canceled by the web service during a call to
 %% <a>ReportTaskProgress</a>.
 set_task_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_task_status(Client, Input, []).
 set_task_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetTaskStatus">>, Input, Options).
 
 %% @doc Validates the specified pipeline definition to ensure that it is well
 %% formed and can be run without error.
 validate_pipeline_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     validate_pipeline_definition(Client, Input, []).
 validate_pipeline_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ValidatePipelineDefinition">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"datapipeline">>},
     Host = aws_util:binary_join([<<"datapipeline.">>,
                                  maps:get(region, Client1),

@@ -51,10 +51,10 @@
 
 %% @doc Creates an AD Connector to connect an on-premises directory.
 connect_directory(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     connect_directory(Client, Input, []).
 connect_directory(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ConnectDirectory">>, Input, Options).
 
 %% @doc Creates an alias for a directory and assigns the alias to the
@@ -66,53 +66,53 @@ connect_directory(Client, Input, Options)
 %%
 %% </important>
 create_alias(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_alias(Client, Input, []).
 create_alias(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateAlias">>, Input, Options).
 
 %% @doc Creates a computer account in the specified directory, and joins the
 %% computer to the directory.
 create_computer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_computer(Client, Input, []).
 create_computer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateComputer">>, Input, Options).
 
 %% @doc Creates a Simple AD directory.
 create_directory(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_directory(Client, Input, []).
 create_directory(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateDirectory">>, Input, Options).
 
 %% @doc Creates a snapshot of an existing directory.
 %%
 %% You cannot take snapshots of extended or connected directories.
 create_snapshot(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_snapshot(Client, Input, []).
 create_snapshot(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateSnapshot">>, Input, Options).
 
 %% @doc Deletes an AWS Directory Service directory.
 delete_directory(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_directory(Client, Input, []).
 delete_directory(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteDirectory">>, Input, Options).
 
 %% @doc Deletes a directory snapshot.
 delete_snapshot(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_snapshot(Client, Input, []).
 delete_snapshot(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteSnapshot">>, Input, Options).
 
 %% @doc Obtains information about the directories that belong to this
@@ -131,10 +131,10 @@ delete_snapshot(Client, Input, Options)
 %% You can also specify a maximum number of return results with the
 %% <i>Limit</i> parameter.
 describe_directories(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_directories(Client, Input, []).
 describe_directories(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeDirectories">>, Input, Options).
 
 %% @doc Obtains information about the directory snapshots that belong to this
@@ -149,60 +149,60 @@ describe_directories(Client, Input, Options)
 %% You can also specify a maximum number of return results with the
 %% <i>Limit</i> parameter.
 describe_snapshots(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_snapshots(Client, Input, []).
 describe_snapshots(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeSnapshots">>, Input, Options).
 
 %% @doc Disables multi-factor authentication (MFA) with Remote Authentication
 %% Dial In User Service (RADIUS) for an AD Connector directory.
 disable_radius(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     disable_radius(Client, Input, []).
 disable_radius(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DisableRadius">>, Input, Options).
 
 %% @doc Disables single-sign on for a directory.
 disable_sso(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     disable_sso(Client, Input, []).
 disable_sso(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DisableSso">>, Input, Options).
 
 %% @doc Enables multi-factor authentication (MFA) with Remote Authentication
 %% Dial In User Service (RADIUS) for an AD Connector directory.
 enable_radius(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     enable_radius(Client, Input, []).
 enable_radius(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"EnableRadius">>, Input, Options).
 
 %% @doc Enables single-sign on for a directory.
 enable_sso(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     enable_sso(Client, Input, []).
 enable_sso(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"EnableSso">>, Input, Options).
 
 %% @doc Obtains directory limit information for the current region.
 get_directory_limits(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_directory_limits(Client, Input, []).
 get_directory_limits(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetDirectoryLimits">>, Input, Options).
 
 %% @doc Obtains the manual snapshot limits for a directory.
 get_snapshot_limits(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_snapshot_limits(Client, Input, []).
 get_snapshot_limits(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetSnapshotLimits">>, Input, Options).
 
 %% @doc Restores a directory using an existing directory snapshot.
@@ -216,26 +216,27 @@ get_snapshot_limits(Client, Input, Options)
 %% the <b>DirectoryDescription.Stage</b> value changes to
 %% <code>Active</code>, the restore operation is complete.
 restore_from_snapshot(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     restore_from_snapshot(Client, Input, []).
 restore_from_snapshot(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RestoreFromSnapshot">>, Input, Options).
 
 %% @doc Updates the Remote Authentication Dial In User Service (RADIUS)
 %% server information for an AD Connector directory.
 update_radius(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_radius(Client, Input, []).
 update_radius(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateRadius">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"ds">>},
     Host = aws_util:binary_join([<<"ds.">>,
                                  maps:get(region, Client1),

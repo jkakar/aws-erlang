@@ -53,10 +53,10 @@
 %%
 %% </note>
 batch_get_repositories(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     batch_get_repositories(Client, Input, []).
 batch_get_repositories(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"BatchGetRepositories">>, Input, Options).
 
 %% @doc Creates a new branch in a repository and points the branch to a
@@ -66,18 +66,18 @@ batch_get_repositories(Client, Input, Options)
 %% default branch. To do this, call the update default branch
 %% operation.</note>
 create_branch(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_branch(Client, Input, []).
 create_branch(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateBranch">>, Input, Options).
 
 %% @doc Creates a new, empty repository.
 create_repository(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_repository(Client, Input, []).
 create_repository(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateRepository">>, Input, Options).
 
 %% @doc Deletes a repository. If a specified repository was already deleted,
@@ -87,19 +87,19 @@ create_repository(Client, Input, Options)
 %% metadata. After a repository is deleted, all future push calls to the
 %% deleted repository will fail.</important>
 delete_repository(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_repository(Client, Input, []).
 delete_repository(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteRepository">>, Input, Options).
 
 %% @doc Retrieves information about a repository branch, including its name
 %% and the last commit ID.
 get_branch(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_branch(Client, Input, []).
 get_branch(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetBranch">>, Input, Options).
 
 %% @doc Gets information about a repository.
@@ -113,26 +113,26 @@ get_branch(Client, Input, Options)
 %%
 %% </note>
 get_repository(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_repository(Client, Input, []).
 get_repository(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetRepository">>, Input, Options).
 
 %% @doc Gets information about one or more branches in a repository.
 list_branches(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_branches(Client, Input, []).
 list_branches(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListBranches">>, Input, Options).
 
 %% @doc Gets information about one or more repositories.
 list_repositories(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_repositories(Client, Input, []).
 list_repositories(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListRepositories">>, Input, Options).
 
 %% @doc Sets or changes the default branch name for the specified repository.
@@ -141,10 +141,10 @@ list_repositories(Client, Input, Options)
 %% current default branch name, a success message is returned even though the
 %% default branch did not change.</note>
 update_default_branch(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_default_branch(Client, Input, []).
 update_default_branch(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateDefaultBranch">>, Input, Options).
 
 %% @doc Sets or changes the comment or description for a repository.
@@ -158,25 +158,26 @@ update_default_branch(Client, Input, Options)
 %%
 %% </note>
 update_repository_description(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_repository_description(Client, Input, []).
 update_repository_description(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateRepositoryDescription">>, Input, Options).
 
 %% @doc Renames a repository.
 update_repository_name(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_repository_name(Client, Input, []).
 update_repository_name(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateRepositoryName">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"codecommit">>},
     Host = aws_util:binary_join([<<"codecommit.">>,
                                  maps:get(region, Client1),

@@ -93,10 +93,10 @@
 %% identity pools is 60 per account. You must use AWS Developer credentials
 %% to call this API.
 create_identity_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_identity_pool(Client, Input, []).
 create_identity_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateIdentityPool">>, Input, Options).
 
 %% @doc Deletes identities from an identity pool. You can specify a list of
@@ -104,10 +104,10 @@ create_identity_pool(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 delete_identities(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_identities(Client, Input, []).
 delete_identities(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteIdentities">>, Input, Options).
 
 %% @doc Deletes a user pool. Once a pool is deleted, users will not be able
@@ -115,10 +115,10 @@ delete_identities(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 delete_identity_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_identity_pool(Client, Input, []).
 delete_identity_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteIdentityPool">>, Input, Options).
 
 %% @doc Returns metadata related to the given identity, including when the
@@ -126,10 +126,10 @@ delete_identity_pool(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 describe_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_identity(Client, Input, []).
 describe_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeIdentity">>, Input, Options).
 
 %% @doc Gets details about a particular identity pool, including the pool
@@ -137,10 +137,10 @@ describe_identity(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 describe_identity_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_identity_pool(Client, Input, []).
 describe_identity_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeIdentityPool">>, Input, Options).
 
 %% @doc Returns credentials for the the provided identity ID. Any provided
@@ -150,10 +150,10 @@ describe_identity_pool(Client, Input, Options)
 %%
 %% This is a public API. You do not need any credentials to call this API.
 get_credentials_for_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_credentials_for_identity(Client, Input, []).
 get_credentials_for_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetCredentialsForIdentity">>, Input, Options).
 
 %% @doc Generates (or retrieves) a Cognito ID. Supplying multiple logins will
@@ -163,20 +163,20 @@ get_credentials_for_identity(Client, Input, Options)
 %%
 %% This is a public API. You do not need any credentials to call this API.
 get_id(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_id(Client, Input, []).
 get_id(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetId">>, Input, Options).
 
 %% @doc Gets the roles for an identity pool.
 %%
 %% You must use AWS Developer credentials to call this API.
 get_identity_pool_roles(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_identity_pool_roles(Client, Input, []).
 get_identity_pool_roles(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetIdentityPoolRoles">>, Input, Options).
 
 %% @doc Gets an OpenID token, using a known Cognito ID. This known Cognito ID
@@ -187,10 +187,10 @@ get_identity_pool_roles(Client, Input, Options)
 %%
 %% This is a public API. You do not need any credentials to call this API.
 get_open_id_token(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_open_id_token(Client, Input, []).
 get_open_id_token(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetOpenIdToken">>, Input, Options).
 
 %% @doc Registers (or retrieves) a Cognito <code>IdentityId</code> and an
@@ -212,30 +212,30 @@ get_open_id_token(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 get_open_id_token_for_developer_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_open_id_token_for_developer_identity(Client, Input, []).
 get_open_id_token_for_developer_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetOpenIdTokenForDeveloperIdentity">>, Input, Options).
 
 %% @doc Lists the identities in a pool.
 %%
 %% You must use AWS Developer credentials to call this API.
 list_identities(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_identities(Client, Input, []).
 list_identities(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListIdentities">>, Input, Options).
 
 %% @doc Lists all of the Cognito identity pools registered for your account.
 %%
 %% This is a public API. You do not need any credentials to call this API.
 list_identity_pools(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_identity_pools(Client, Input, []).
 list_identity_pools(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListIdentityPools">>, Input, Options).
 
 %% @doc Retrieves the <code>IdentityID</code> associated with a
@@ -252,10 +252,10 @@ list_identity_pools(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 lookup_developer_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     lookup_developer_identity(Client, Input, []).
 lookup_developer_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"LookupDeveloperIdentity">>, Input, Options).
 
 %% @doc Merges two users having different <code>IdentityId</code>s, existing
@@ -270,10 +270,10 @@ lookup_developer_identity(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 merge_developer_identities(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     merge_developer_identities(Client, Input, []).
 merge_developer_identities(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"MergeDeveloperIdentities">>, Input, Options).
 
 %% @doc Sets the roles for an identity pool. These roles are used when making
@@ -281,10 +281,10 @@ merge_developer_identities(Client, Input, Options)
 %%
 %% You must use AWS Developer credentials to call this API.
 set_identity_pool_roles(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_identity_pool_roles(Client, Input, []).
 set_identity_pool_roles(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetIdentityPoolRoles">>, Input, Options).
 
 %% @doc Unlinks a <code>DeveloperUserIdentifier</code> from an existing
@@ -295,10 +295,10 @@ set_identity_pool_roles(Client, Input, Options)
 %%
 %% This is a public API. You do not need any credentials to call this API.
 unlink_developer_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     unlink_developer_identity(Client, Input, []).
 unlink_developer_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UnlinkDeveloperIdentity">>, Input, Options).
 
 %% @doc Unlinks a federated identity from an existing account. Unlinked
@@ -307,27 +307,28 @@ unlink_developer_identity(Client, Input, Options)
 %%
 %% This is a public API. You do not need any credentials to call this API.
 unlink_identity(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     unlink_identity(Client, Input, []).
 unlink_identity(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UnlinkIdentity">>, Input, Options).
 
 %% @doc Updates a user pool.
 %%
 %% You must use AWS Developer credentials to call this API.
 update_identity_pool(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_identity_pool(Client, Input, []).
 update_identity_pool(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateIdentityPool">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"cognito-identity">>},
     Host = aws_util:binary_join([<<"cognito-identity.">>,
                                  maps:get(region, Client1),

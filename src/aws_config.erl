@@ -48,6 +48,8 @@
          describe_delivery_channels/3,
          get_resource_config_history/2,
          get_resource_config_history/3,
+         list_discovered_resources/2,
+         list_discovered_resources/3,
          put_configuration_recorder/2,
          put_configuration_recorder/3,
          put_delivery_channel/2,
@@ -70,10 +72,10 @@
 %% channel, stop the running configuration recorder using the
 %% <a>StopConfigurationRecorder</a> action.
 delete_delivery_channel(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_delivery_channel(Client, Input, []).
 delete_delivery_channel(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteDeliveryChannel">>, Input, Options).
 
 %% @doc Schedules delivery of a configuration snapshot to the Amazon S3
@@ -86,10 +88,10 @@ delete_delivery_channel(Client, Input, Options)
 %% <li>Notification of delivery failure, if the delivery failed to
 %% complete.</li> </ul>
 deliver_config_snapshot(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deliver_config_snapshot(Client, Input, []).
 deliver_config_snapshot(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeliverConfigSnapshot">>, Input, Options).
 
 %% @doc Returns the current status of the specified configuration recorder.
@@ -99,10 +101,10 @@ deliver_config_snapshot(Client, Input, Options)
 %% <note>Currently, you can specify only one configuration recorder per
 %% account.</note>
 describe_configuration_recorder_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_configuration_recorder_status(Client, Input, []).
 describe_configuration_recorder_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeConfigurationRecorderStatus">>, Input, Options).
 
 %% @doc Returns the name of one or more specified configuration recorders. If
@@ -114,10 +116,10 @@ describe_configuration_recorder_status(Client, Input, Options)
 %%
 %% </note>
 describe_configuration_recorders(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_configuration_recorders(Client, Input, []).
 describe_configuration_recorders(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeConfigurationRecorders">>, Input, Options).
 
 %% @doc Returns the current status of the specified delivery channel. If a
@@ -127,10 +129,10 @@ describe_configuration_recorders(Client, Input, Options)
 %% <note>Currently, you can specify only one delivery channel per
 %% account.</note>
 describe_delivery_channel_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_delivery_channel_status(Client, Input, []).
 describe_delivery_channel_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeDeliveryChannelStatus">>, Input, Options).
 
 %% @doc Returns details about the specified delivery channel. If a delivery
@@ -141,31 +143,57 @@ describe_delivery_channel_status(Client, Input, Options)
 %%
 %% </note>
 describe_delivery_channels(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_delivery_channels(Client, Input, []).
 describe_delivery_channels(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeDeliveryChannels">>, Input, Options).
 
 %% @doc Returns a list of configuration items for the specified resource. The
 %% list contains details about each state of the resource during the
-%% specified time interval. You can specify a <code>limit</code> on the
-%% number of results returned on the page. If a limit is specified, a
-%% <code>nextToken</code> is returned as part of the result that you can use
-%% to continue this request.
+%% specified time interval.
+%%
+%% The response is paginated, and by default, AWS Config returns a limit of
+%% 10 configuration items per page. You can customize this number with the
+%% <code>limit</code> parameter. The response includes a
+%% <code>nextToken</code> string, and to get the next page of results, run
+%% the request again and enter this string for the <code>nextToken</code>
+%% parameter.
 %%
 %% <note> Each call to the API is limited to span a duration of seven days.
 %% It is likely that the number of records returned is smaller than the
 %% specified <code>limit</code>. In such cases, you can make another call,
-%% using the <code>nextToken</code> .
+%% using the <code>nextToken</code>.
 %%
 %% </note>
 get_resource_config_history(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_resource_config_history(Client, Input, []).
 get_resource_config_history(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetResourceConfigHistory">>, Input, Options).
+
+%% @doc Accepts a resource type and returns a list of resource identifiers
+%% for the resources of that type. A resource identifier includes the
+%% resource type, ID, and (if available) the custom resource name. The
+%% results consist of resources that AWS Config has discovered, including
+%% those that AWS Config is not currently recording. You can narrow the
+%% results to include only resources that have specific resource IDs or a
+%% resource name.
+%%
+%% <note>You can specify either resource IDs or a resource name but not both
+%% in the same request.</note> The response is paginated, and by default AWS
+%% Config lists 100 resource identifiers on each page. You can customize this
+%% number with the <code>limit</code> parameter. The response includes a
+%% <code>nextToken</code> string, and to get the next page of results, run
+%% the request again and enter this string for the <code>nextToken</code>
+%% parameter.
+list_discovered_resources(Client, Input)
+  when is_reference(Client), is_map(Input) ->
+    list_discovered_resources(Client, Input, []).
+list_discovered_resources(Client, Input, Options)
+  when is_reference(Client), is_map(Input), is_list(Options) ->
+    request(Client, <<"ListDiscoveredResources">>, Input, Options).
 
 %% @doc Creates a new configuration recorder to record the selected resource
 %% configurations.
@@ -183,10 +211,10 @@ get_resource_config_history(Client, Input, Options)
 %%
 %% </note>
 put_configuration_recorder(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_configuration_recorder(Client, Input, []).
 put_configuration_recorder(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutConfigurationRecorder">>, Input, Options).
 
 %% @doc Creates a new delivery channel object to deliver the configuration
@@ -203,10 +231,10 @@ put_configuration_recorder(Client, Input, Options)
 %%
 %% </note>
 put_delivery_channel(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_delivery_channel(Client, Input, []).
 put_delivery_channel(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutDeliveryChannel">>, Input, Options).
 
 %% @doc Starts recording configurations of the AWS resources you have
@@ -215,26 +243,27 @@ put_delivery_channel(Client, Input, Options)
 %% You must have created at least one delivery channel to successfully start
 %% the configuration recorder.
 start_configuration_recorder(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_configuration_recorder(Client, Input, []).
 start_configuration_recorder(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartConfigurationRecorder">>, Input, Options).
 
 %% @doc Stops recording configurations of the AWS resources you have selected
 %% to record in your AWS account.
 stop_configuration_recorder(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     stop_configuration_recorder(Client, Input, []).
 stop_configuration_recorder(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StopConfigurationRecorder">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"config">>},
     Host = aws_util:binary_join([<<"config.">>,
                                  maps:get(region, Client1),

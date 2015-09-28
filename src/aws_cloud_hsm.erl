@@ -49,10 +49,10 @@
 %% partition group is a group of partitions that spans multiple physical
 %% HSMs.
 create_hapg(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_hapg(Client, Input, []).
 create_hapg(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateHapg">>, Input, Options).
 
 %% @doc Creates an uninitialized HSM instance.
@@ -72,86 +72,86 @@ create_hapg(Client, Input, Options)
 %%
 %% </important>
 create_hsm(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_hsm(Client, Input, []).
 create_hsm(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateHsm">>, Input, Options).
 
 %% @doc Creates an HSM client.
 create_luna_client(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_luna_client(Client, Input, []).
 create_luna_client(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateLunaClient">>, Input, Options).
 
 %% @doc Deletes a high-availability partition group.
 delete_hapg(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_hapg(Client, Input, []).
 delete_hapg(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteHapg">>, Input, Options).
 
 %% @doc Deletes an HSM. After completion, this operation cannot be undone and
 %% your key material cannot be recovered.
 delete_hsm(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_hsm(Client, Input, []).
 delete_hsm(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteHsm">>, Input, Options).
 
 %% @doc Deletes a client.
 delete_luna_client(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_luna_client(Client, Input, []).
 delete_luna_client(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteLunaClient">>, Input, Options).
 
 %% @doc Retrieves information about a high-availability partition group.
 describe_hapg(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_hapg(Client, Input, []).
 describe_hapg(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeHapg">>, Input, Options).
 
 %% @doc Retrieves information about an HSM. You can identify the HSM by its
 %% ARN or its serial number.
 describe_hsm(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_hsm(Client, Input, []).
 describe_hsm(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeHsm">>, Input, Options).
 
 %% @doc Retrieves information about an HSM client.
 describe_luna_client(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_luna_client(Client, Input, []).
 describe_luna_client(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeLunaClient">>, Input, Options).
 
 %% @doc Gets the configuration files necessary to connect to all high
 %% availability partition groups the client is associated with.
 get_config(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_config(Client, Input, []).
 get_config(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetConfig">>, Input, Options).
 
 %% @doc Lists the Availability Zones that have available AWS CloudHSM
 %% capacity.
 list_available_zones(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_available_zones(Client, Input, []).
 list_available_zones(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListAvailableZones">>, Input, Options).
 
 %% @doc Lists the high-availability partition groups for the account.
@@ -161,10 +161,10 @@ list_available_zones(Client, Input, Options)
 %% response contains a token that you pass in the next call to
 %% <a>ListHapgs</a> to retrieve the next set of items.
 list_hapgs(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_hapgs(Client, Input, []).
 list_hapgs(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListHapgs">>, Input, Options).
 
 %% @doc Retrieves the identifiers of all of the HSMs provisioned for the
@@ -175,10 +175,10 @@ list_hapgs(Client, Input, Options)
 %% response contains a token that you pass in the next call to
 %% <a>ListHsms</a> to retrieve the next set of items.
 list_hsms(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_hsms(Client, Input, []).
 list_hsms(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListHsms">>, Input, Options).
 
 %% @doc Lists all of the clients.
@@ -188,18 +188,18 @@ list_hsms(Client, Input, Options)
 %% response contains a token that you pass in the next call to
 %% <a>ListLunaClients</a> to retrieve the next set of items.
 list_luna_clients(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_luna_clients(Client, Input, []).
 list_luna_clients(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListLunaClients">>, Input, Options).
 
 %% @doc Modifies an existing high-availability partition group.
 modify_hapg(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     modify_hapg(Client, Input, []).
 modify_hapg(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ModifyHapg">>, Input, Options).
 
 %% @doc Modifies an HSM.
@@ -212,10 +212,10 @@ modify_hapg(Client, Input, Options)
 %%
 %% </important>
 modify_hsm(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     modify_hsm(Client, Input, []).
 modify_hsm(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ModifyHsm">>, Input, Options).
 
 %% @doc Modifies the certificate used by the client.
@@ -223,17 +223,18 @@ modify_hsm(Client, Input, Options)
 %% This action can potentially start a workflow to install the new
 %% certificate on the client's HSMs.
 modify_luna_client(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     modify_luna_client(Client, Input, []).
 modify_luna_client(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ModifyLunaClient">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"cloudhsm">>},
     Host = aws_util:binary_join([<<"cloudhsm.">>,
                                  maps:get(region, Client1),

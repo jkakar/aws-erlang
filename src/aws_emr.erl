@@ -51,10 +51,10 @@
 
 %% @doc AddInstanceGroups adds an instance group to a running cluster.
 add_instance_groups(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_instance_groups(Client, Input, []).
 add_instance_groups(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddInstanceGroups">>, Input, Options).
 
 %% @doc AddJobFlowSteps adds new steps to a running job flow. A maximum of
@@ -84,10 +84,10 @@ add_instance_groups(Client, Input, Options)
 %% You can only add steps to a job flow that is in one of the following
 %% states: STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
 add_job_flow_steps(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_job_flow_steps(Client, Input, []).
 add_job_flow_steps(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddJobFlowSteps">>, Input, Options).
 
 %% @doc Adds tags to an Amazon EMR resource. Tags make it easier to associate
@@ -96,20 +96,20 @@ add_job_flow_steps(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html">Tagging
 %% Amazon EMR Resources</a>.
 add_tags(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_tags(Client, Input, []).
 add_tags(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddTags">>, Input, Options).
 
 %% @doc Provides cluster-level details including status, hardware and
 %% software configuration, VPC settings, and so on. For information about the
 %% cluster steps, see <a>ListSteps</a>.
 describe_cluster(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_cluster(Client, Input, []).
 describe_cluster(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeCluster">>, Input, Options).
 
 %% @doc This API is deprecated and will eventually be removed. We recommend
@@ -132,27 +132,27 @@ describe_cluster(Client, Input, Options)
 %% <code>SHUTTING_DOWN</code>, <code>STARTING</code> </li> </ul> Amazon
 %% Elastic MapReduce can return a maximum of 512 job flow descriptions.
 describe_job_flows(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_job_flows(Client, Input, []).
 describe_job_flows(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeJobFlows">>, Input, Options).
 
 %% @doc Provides more detail about the cluster step.
 describe_step(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_step(Client, Input, []).
 describe_step(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStep">>, Input, Options).
 
 %% @doc Provides information about the bootstrap actions associated with a
 %% cluster.
 list_bootstrap_actions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_bootstrap_actions(Client, Input, []).
 list_bootstrap_actions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListBootstrapActions">>, Input, Options).
 
 %% @doc Provides the status of all clusters visible to this AWS account.
@@ -161,19 +161,19 @@ list_bootstrap_actions(Client, Input, Options)
 %% call returns a maximum of 50 clusters per call, but returns a marker to
 %% track the paging of the cluster list across multiple ListClusters calls.
 list_clusters(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_clusters(Client, Input, []).
 list_clusters(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListClusters">>, Input, Options).
 
 %% @doc Provides all available details about the instance groups in a
 %% cluster.
 list_instance_groups(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_instance_groups(Client, Input, []).
 list_instance_groups(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListInstanceGroups">>, Input, Options).
 
 %% @doc Provides information about the cluster instances that Amazon EMR
@@ -182,18 +182,18 @@ list_instance_groups(Client, Input, Options)
 %% when instances become available to Amazon EMR to use for jobs, and the IP
 %% addresses for cluster instances, etc.
 list_instances(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_instances(Client, Input, []).
 list_instances(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListInstances">>, Input, Options).
 
 %% @doc Provides a list of steps for the cluster.
 list_steps(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_steps(Client, Input, []).
 list_steps(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListSteps">>, Input, Options).
 
 %% @doc ModifyInstanceGroups modifies the number of nodes and configuration
@@ -201,10 +201,10 @@ list_steps(Client, Input, Options)
 %% instance count for the group and the instance group ID. The call will
 %% either succeed or fail atomically.
 modify_instance_groups(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     modify_instance_groups(Client, Input, []).
 modify_instance_groups(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ModifyInstanceGroups">>, Input, Options).
 
 %% @doc Removes tags from an Amazon EMR resource. Tags make it easier to
@@ -216,10 +216,10 @@ modify_instance_groups(Client, Input, Options)
 %% The following example removes the stack tag with value Prod from a
 %% cluster:
 remove_tags(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     remove_tags(Client, Input, []).
 remove_tags(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RemoveTags">>, Input, Options).
 
 %% @doc RunJobFlow creates and starts running a new job flow. The job flow
@@ -250,10 +250,10 @@ remove_tags(Client, Input, Options)
 %% For long running job flows, we recommend that you periodically store your
 %% results.
 run_job_flow(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     run_job_flow(Client, Input, []).
 run_job_flow(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RunJobFlow">>, Input, Options).
 
 %% @doc SetTerminationProtection locks a job flow so the Amazon EC2 instances
@@ -278,10 +278,10 @@ run_job_flow(Client, Input, Options)
 %% a Job Flow from Termination</a> in the <i>Amazon Elastic MapReduce
 %% Developer's Guide.</i>
 set_termination_protection(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_termination_protection(Client, Input, []).
 set_termination_protection(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetTerminationProtection">>, Input, Options).
 
 %% @doc Sets whether all AWS Identity and Access Management (IAM) users under
@@ -292,10 +292,10 @@ set_termination_protection(Client, Input, Options)
 %% an IAM user who created the job flow or the AWS account that owns the job
 %% flow.
 set_visible_to_all_users(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_visible_to_all_users(Client, Input, []).
 set_visible_to_all_users(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetVisibleToAllUsers">>, Input, Options).
 
 %% @doc TerminateJobFlows shuts a list of job flows down. When a job flow is
@@ -309,17 +309,18 @@ set_visible_to_all_users(Client, Input, Options)
 %% job flow, it may take up to 5-20 minutes for the job flow to completely
 %% terminate and release allocated resources, such as Amazon EC2 instances.
 terminate_job_flows(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     terminate_job_flows(Client, Input, []).
 terminate_job_flows(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"TerminateJobFlows">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"elasticmapreduce">>},
     Host = aws_util:binary_join([<<"elasticmapreduce.">>,
                                  maps:get(region, Client1),

@@ -214,10 +214,10 @@
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 assign_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     assign_instance(Client, Input, []).
 assign_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AssignInstance">>, Input, Options).
 
 %% @doc Assigns one of the stack's registered Amazon EBS volumes to a
@@ -235,10 +235,10 @@ assign_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 assign_volume(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     assign_volume(Client, Input, []).
 assign_volume(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AssignVolume">>, Input, Options).
 
 %% @doc Associates one of the stack's registered Elastic IP addresses with a
@@ -254,10 +254,10 @@ assign_volume(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 associate_elastic_ip(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     associate_elastic_ip(Client, Input, []).
 associate_elastic_ip(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AssociateElasticIp">>, Input, Options).
 
 %% @doc Attaches an Elastic Load Balancing load balancer to a specified
@@ -278,10 +278,10 @@ associate_elastic_ip(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 attach_elastic_load_balancer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     attach_elastic_load_balancer(Client, Input, []).
 attach_elastic_load_balancer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AttachElasticLoadBalancer">>, Input, Options).
 
 %% @doc Creates a clone of a specified stack. For more information, see <a
@@ -295,10 +295,10 @@ attach_elastic_load_balancer(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 clone_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     clone_stack(Client, Input, []).
 clone_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CloneStack">>, Input, Options).
 
 %% @doc Creates an app for a specified stack. For more information, see <a
@@ -312,10 +312,10 @@ clone_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_app(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_app(Client, Input, []).
 create_app(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateApp">>, Input, Options).
 
 %% @doc Runs deployment or stack commands. For more information, see <a
@@ -331,10 +331,10 @@ create_app(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_deployment(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_deployment(Client, Input, []).
 create_deployment(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateDeployment">>, Input, Options).
 
 %% @doc Creates an instance in a specified stack. For more information, see
@@ -349,10 +349,10 @@ create_deployment(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_instance(Client, Input, []).
 create_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateInstance">>, Input, Options).
 
 %% @doc Creates a layer. For more information, see <a
@@ -373,10 +373,10 @@ create_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_layer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_layer(Client, Input, []).
 create_layer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateLayer">>, Input, Options).
 
 %% @doc Creates a new stack. For more information, see <a
@@ -389,10 +389,10 @@ create_layer(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_stack(Client, Input, []).
 create_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateStack">>, Input, Options).
 
 %% @doc Creates a new user profile.
@@ -403,10 +403,10 @@ create_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 create_user_profile(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_user_profile(Client, Input, []).
 create_user_profile(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateUserProfile">>, Input, Options).
 
 %% @doc Deletes a specified app.
@@ -418,10 +418,10 @@ create_user_profile(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 delete_app(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_app(Client, Input, []).
 delete_app(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteApp">>, Input, Options).
 
 %% @doc Deletes a specified instance, which terminates the associated Amazon
@@ -438,10 +438,10 @@ delete_app(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 delete_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_instance(Client, Input, []).
 delete_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteInstance">>, Input, Options).
 
 %% @doc Deletes a specified layer. You must first stop and then delete all
@@ -457,10 +457,10 @@ delete_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 delete_layer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_layer(Client, Input, []).
 delete_layer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteLayer">>, Input, Options).
 
 %% @doc Deletes a specified stack. You must first delete all instances,
@@ -476,10 +476,10 @@ delete_layer(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 delete_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_stack(Client, Input, []).
 delete_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteStack">>, Input, Options).
 
 %% @doc Deletes a user profile.
@@ -490,10 +490,10 @@ delete_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 delete_user_profile(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_user_profile(Client, Input, []).
 delete_user_profile(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteUserProfile">>, Input, Options).
 
 %% @doc Deregisters a specified Amazon ECS cluster from a stack. For more
@@ -507,10 +507,10 @@ delete_user_profile(Client, Input, Options)
 %% see <a
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html"></a>.
 deregister_ecs_cluster(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_ecs_cluster(Client, Input, []).
 deregister_ecs_cluster(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterEcsCluster">>, Input, Options).
 
 %% @doc Deregisters a specified Elastic IP address. The address can then be
@@ -525,10 +525,10 @@ deregister_ecs_cluster(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 deregister_elastic_ip(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_elastic_ip(Client, Input, []).
 deregister_elastic_ip(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterElasticIp">>, Input, Options).
 
 %% @doc Deregister a registered Amazon EC2 or on-premises instance. This
@@ -543,10 +543,10 @@ deregister_elastic_ip(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 deregister_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_instance(Client, Input, []).
 deregister_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterInstance">>, Input, Options).
 
 %% @doc Deregisters an Amazon RDS instance.
@@ -558,10 +558,10 @@ deregister_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 deregister_rds_db_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_rds_db_instance(Client, Input, []).
 deregister_rds_db_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterRdsDbInstance">>, Input, Options).
 
 %% @doc Deregisters an Amazon EBS volume. The volume can then be registered
@@ -576,10 +576,10 @@ deregister_rds_db_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 deregister_volume(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_volume(Client, Input, []).
 deregister_volume(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterVolume">>, Input, Options).
 
 %% @doc Describes the available AWS OpsWorks agent versions. You must specify
@@ -587,10 +587,10 @@ deregister_volume(Client, Input, Options)
 %% returns a list of available agent versions for the specified stack or
 %% configuration manager.
 describe_agent_versions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_agent_versions(Client, Input, []).
 describe_agent_versions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeAgentVersions">>, Input, Options).
 
 %% @doc Requests a description of a specified set of apps.
@@ -604,10 +604,10 @@ describe_agent_versions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_apps(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_apps(Client, Input, []).
 describe_apps(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeApps">>, Input, Options).
 
 %% @doc Describes the results of specified commands.
@@ -621,10 +621,10 @@ describe_apps(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_commands(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_commands(Client, Input, []).
 describe_commands(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeCommands">>, Input, Options).
 
 %% @doc Requests a description of a specified set of deployments.
@@ -638,10 +638,10 @@ describe_commands(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_deployments(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_deployments(Client, Input, []).
 describe_deployments(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeDeployments">>, Input, Options).
 
 %% @doc Describes Amazon ECS clusters that are registered with a stack. If
@@ -657,10 +657,10 @@ describe_deployments(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_ecs_clusters(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_ecs_clusters(Client, Input, []).
 describe_ecs_clusters(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeEcsClusters">>, Input, Options).
 
 %% @doc Describes <a
@@ -676,10 +676,10 @@ describe_ecs_clusters(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_elastic_ips(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_elastic_ips(Client, Input, []).
 describe_elastic_ips(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeElasticIps">>, Input, Options).
 
 %% @doc Describes a stack's Elastic Load Balancing instances.
@@ -693,10 +693,10 @@ describe_elastic_ips(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_elastic_load_balancers(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_elastic_load_balancers(Client, Input, []).
 describe_elastic_load_balancers(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeElasticLoadBalancers">>, Input, Options).
 
 %% @doc Requests a description of a set of instances.
@@ -710,10 +710,10 @@ describe_elastic_load_balancers(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_instances(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_instances(Client, Input, []).
 describe_instances(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeInstances">>, Input, Options).
 
 %% @doc Requests a description of one or more layers in a specified stack.
@@ -727,10 +727,10 @@ describe_instances(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_layers(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_layers(Client, Input, []).
 describe_layers(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeLayers">>, Input, Options).
 
 %% @doc Describes load-based auto scaling configurations for specified
@@ -745,10 +745,10 @@ describe_layers(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_load_based_auto_scaling(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_load_based_auto_scaling(Client, Input, []).
 describe_load_based_auto_scaling(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeLoadBasedAutoScaling">>, Input, Options).
 
 %% @doc Describes a user's SSH information.
@@ -759,10 +759,10 @@ describe_load_based_auto_scaling(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_my_user_profile(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_my_user_profile(Client, Input, []).
 describe_my_user_profile(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeMyUserProfile">>, Input, Options).
 
 %% @doc Describes the permissions for a specified stack.
@@ -774,10 +774,10 @@ describe_my_user_profile(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_permissions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_permissions(Client, Input, []).
 describe_permissions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribePermissions">>, Input, Options).
 
 %% @doc Describe an instance's RAID arrays.
@@ -791,10 +791,10 @@ describe_permissions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_raid_arrays(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_raid_arrays(Client, Input, []).
 describe_raid_arrays(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeRaidArrays">>, Input, Options).
 
 %% @doc Describes Amazon RDS instances.
@@ -806,10 +806,10 @@ describe_raid_arrays(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_rds_db_instances(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_rds_db_instances(Client, Input, []).
 describe_rds_db_instances(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeRdsDbInstances">>, Input, Options).
 
 %% @doc Describes AWS OpsWorks service errors.
@@ -821,10 +821,10 @@ describe_rds_db_instances(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_service_errors(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_service_errors(Client, Input, []).
 describe_service_errors(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeServiceErrors">>, Input, Options).
 
 %% @doc Requests a description of a stack's provisioning parameters.
@@ -836,10 +836,10 @@ describe_service_errors(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_stack_provisioning_parameters(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_stack_provisioning_parameters(Client, Input, []).
 describe_stack_provisioning_parameters(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStackProvisioningParameters">>, Input, Options).
 
 %% @doc Describes the number of layers and apps in a specified stack, and the
@@ -853,10 +853,10 @@ describe_stack_provisioning_parameters(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_stack_summary(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_stack_summary(Client, Input, []).
 describe_stack_summary(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStackSummary">>, Input, Options).
 
 %% @doc Requests a description of one or more stacks.
@@ -868,10 +868,10 @@ describe_stack_summary(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_stacks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_stacks(Client, Input, []).
 describe_stacks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStacks">>, Input, Options).
 
 %% @doc Describes time-based auto scaling configurations for specified
@@ -886,10 +886,10 @@ describe_stacks(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_time_based_auto_scaling(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_time_based_auto_scaling(Client, Input, []).
 describe_time_based_auto_scaling(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTimeBasedAutoScaling">>, Input, Options).
 
 %% @doc Describe specified users.
@@ -900,10 +900,10 @@ describe_time_based_auto_scaling(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_user_profiles(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_user_profiles(Client, Input, []).
 describe_user_profiles(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeUserProfiles">>, Input, Options).
 
 %% @doc Describes an instance's Amazon EBS volumes.
@@ -917,10 +917,10 @@ describe_user_profiles(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 describe_volumes(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_volumes(Client, Input, []).
 describe_volumes(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeVolumes">>, Input, Options).
 
 %% @doc Detaches a specified Elastic Load Balancing instance from its layer.
@@ -932,10 +932,10 @@ describe_volumes(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 detach_elastic_load_balancer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     detach_elastic_load_balancer(Client, Input, []).
 detach_elastic_load_balancer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DetachElasticLoadBalancer">>, Input, Options).
 
 %% @doc Disassociates an Elastic IP address from its instance. The address
@@ -950,10 +950,10 @@ detach_elastic_load_balancer(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 disassociate_elastic_ip(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     disassociate_elastic_ip(Client, Input, []).
 disassociate_elastic_ip(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DisassociateElasticIp">>, Input, Options).
 
 %% @doc Gets a generated host name for the specified layer, based on the
@@ -966,19 +966,19 @@ disassociate_elastic_ip(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 get_hostname_suggestion(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_hostname_suggestion(Client, Input, []).
 get_hostname_suggestion(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetHostnameSuggestion">>, Input, Options).
 
 %% @doc <note>This action can be used only with Windows stacks.</note> Grants
 %% RDP access to a Windows instance for a specified time period.
 grant_access(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     grant_access(Client, Input, []).
 grant_access(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GrantAccess">>, Input, Options).
 
 %% @doc Reboots a specified instance. For more information, see <a
@@ -992,10 +992,10 @@ grant_access(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 reboot_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     reboot_instance(Client, Input, []).
 reboot_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RebootInstance">>, Input, Options).
 
 %% @doc Registers a specified Amazon ECS cluster with a stack. You can
@@ -1011,10 +1011,10 @@ reboot_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">
 %% Managing User Permissions</a>.
 register_ecs_cluster(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_ecs_cluster(Client, Input, []).
 register_ecs_cluster(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterEcsCluster">>, Input, Options).
 
 %% @doc Registers an Elastic IP address with a specified stack. An address
@@ -1031,10 +1031,10 @@ register_ecs_cluster(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 register_elastic_ip(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_elastic_ip(Client, Input, []).
 register_elastic_ip(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterElasticIp">>, Input, Options).
 
 %% @doc Registers instances with a specified stack that were created outside
@@ -1054,10 +1054,10 @@ register_elastic_ip(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 register_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_instance(Client, Input, []).
 register_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterInstance">>, Input, Options).
 
 %% @doc Registers an Amazon RDS instance with a stack.
@@ -1069,10 +1069,10 @@ register_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 register_rds_db_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_rds_db_instance(Client, Input, []).
 register_rds_db_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterRdsDbInstance">>, Input, Options).
 
 %% @doc Registers an Amazon EBS volume with a specified stack. A volume can
@@ -1089,10 +1089,10 @@ register_rds_db_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 register_volume(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_volume(Client, Input, []).
 register_volume(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterVolume">>, Input, Options).
 
 %% @doc Specify the load-based auto scaling configuration for a specified
@@ -1112,10 +1112,10 @@ register_volume(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 set_load_based_auto_scaling(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_load_based_auto_scaling(Client, Input, []).
 set_load_based_auto_scaling(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetLoadBasedAutoScaling">>, Input, Options).
 
 %% @doc Specifies a user's permissions. For more information, see <a
@@ -1129,10 +1129,10 @@ set_load_based_auto_scaling(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 set_permission(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_permission(Client, Input, []).
 set_permission(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetPermission">>, Input, Options).
 
 %% @doc Specify the time-based auto scaling configuration for a specified
@@ -1147,10 +1147,10 @@ set_permission(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 set_time_based_auto_scaling(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     set_time_based_auto_scaling(Client, Input, []).
 set_time_based_auto_scaling(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SetTimeBasedAutoScaling">>, Input, Options).
 
 %% @doc Starts a specified instance. For more information, see <a
@@ -1164,10 +1164,10 @@ set_time_based_auto_scaling(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 start_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_instance(Client, Input, []).
 start_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartInstance">>, Input, Options).
 
 %% @doc Starts a stack's instances.
@@ -1179,10 +1179,10 @@ start_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 start_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_stack(Client, Input, []).
 start_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartStack">>, Input, Options).
 
 %% @doc Stops a specified instance. When you stop a standard instance, the
@@ -1199,10 +1199,10 @@ start_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 stop_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     stop_instance(Client, Input, []).
 stop_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StopInstance">>, Input, Options).
 
 %% @doc Stops a specified stack.
@@ -1214,10 +1214,10 @@ stop_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 stop_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     stop_stack(Client, Input, []).
 stop_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StopStack">>, Input, Options).
 
 %% @doc Unassigns a registered instance from all of it's layers. The instance
@@ -1232,10 +1232,10 @@ stop_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 unassign_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     unassign_instance(Client, Input, []).
 unassign_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UnassignInstance">>, Input, Options).
 
 %% @doc Unassigns an assigned Amazon EBS volume. The volume remains
@@ -1250,10 +1250,10 @@ unassign_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 unassign_volume(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     unassign_volume(Client, Input, []).
 unassign_volume(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UnassignVolume">>, Input, Options).
 
 %% @doc Updates a specified app.
@@ -1265,10 +1265,10 @@ unassign_volume(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_app(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_app(Client, Input, []).
 update_app(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateApp">>, Input, Options).
 
 %% @doc Updates a registered Elastic IP address's name. For more information,
@@ -1283,10 +1283,10 @@ update_app(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_elastic_ip(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_elastic_ip(Client, Input, []).
 update_elastic_ip(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateElasticIp">>, Input, Options).
 
 %% @doc Updates a specified instance.
@@ -1298,10 +1298,10 @@ update_elastic_ip(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_instance(Client, Input, []).
 update_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateInstance">>, Input, Options).
 
 %% @doc Updates a specified layer.
@@ -1313,10 +1313,10 @@ update_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_layer(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_layer(Client, Input, []).
 update_layer(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateLayer">>, Input, Options).
 
 %% @doc Updates a user's SSH public key.
@@ -1327,10 +1327,10 @@ update_layer(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_my_user_profile(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_my_user_profile(Client, Input, []).
 update_my_user_profile(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateMyUserProfile">>, Input, Options).
 
 %% @doc Updates an Amazon RDS instance.
@@ -1342,10 +1342,10 @@ update_my_user_profile(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_rds_db_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_rds_db_instance(Client, Input, []).
 update_rds_db_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateRdsDbInstance">>, Input, Options).
 
 %% @doc Updates a specified stack.
@@ -1357,10 +1357,10 @@ update_rds_db_instance(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_stack(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_stack(Client, Input, []).
 update_stack(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateStack">>, Input, Options).
 
 %% @doc Updates a specified user profile.
@@ -1371,10 +1371,10 @@ update_stack(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_user_profile(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_user_profile(Client, Input, []).
 update_user_profile(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateUserProfile">>, Input, Options).
 
 %% @doc Updates an Amazon EBS volume's name or mount point. For more
@@ -1389,17 +1389,18 @@ update_user_profile(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
 %% User Permissions</a>.
 update_volume(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_volume(Client, Input, []).
 update_volume(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateVolume">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"opsworks">>},
     Host = aws_util:binary_join([<<"opsworks.">>,
                                  maps:get(region, Client1),
