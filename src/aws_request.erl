@@ -145,8 +145,8 @@ signed_header({Name, _}) ->
 %% returns a new set of HTTP headers with Authorization and X-Aws-Date
 %% header/value pairs added.
 sign_request_with_client_test() ->
-    Client = #{access_key_id => <<"access-key-id">>,
-               secret_access_key => <<"secret-access-key">>,
+    Client = #{access_key => <<"access-key-id">>,
+               secret_key => <<"secret-access-key">>,
                endpoint => <<"amazonaws.com">>,
                region => <<"us-east-1">>,
                service => <<"ec2">>},
