@@ -6,7 +6,6 @@ Here is an example:
 
 ```erlang
 application:ensure_all_started(aws).
-{ok,[erlware_commons,idna,hackney,jsx,aws]}
 {ok, Client} = aws_client:make_client(<<"access-key-id">>,
                                 <<"secret-access-key">>,
                                 <<"us-east-1">>),

@@ -83,10 +83,11 @@ handle_call({add_creds, {static, AccessKey, SecretKey}, Opts}, _From, State) ->
             {reply, {ok, Ref}, State}
     end;
 handle_call(Args, _From, State) ->
-    io:format("Unknown args ~p~n", [Args]),
+    error_logger:warning_message("Unknown call ~p~n", [Args]),
     {noreply, State}.
 
-handle_cast(_Message, State) ->
+handle_cast(Message, State) ->
+    error_logger:warning_message("Unknown Cast ~p~n", [Message]),
     {noreply, State}.
 
 handle_info({refresh_metadata, Ref, Role}, State) ->
@@ -97,7 +98,8 @@ handle_info({refresh_metadata, Ref, Role}, State) ->
     setup_update_callback(Expiry, Ref, Role),
     {noreply, State};
 
-handle_info(_Message, State) ->
+handle_info(Message, State) ->
+    error_logger:warning_message("Unknown message ~p~n", [Message]),
     {noreply, State}.
 
 code_change(_Prev, State, _Extra) ->

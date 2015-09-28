@@ -2,11 +2,11 @@
  {<<"hackney">>,{pkg,<<"hackney">>,<<"1.0.6">>},0},
  {<<"idna">>,{pkg,<<"idna">>,<<"1.0.2">>},1},
  {<<"iso8601">>,
-  {git,"git@github.com:oubiwann/erlang_iso8601.git",
+  {git,"https://github.com/oubiwann/erlang_iso8601.git",
        {ref,"ccefac160e832afc782d685ed8b76b47976b51c8"}},
   0},
  {<<"jsx">>,
-  {git,"git://github.com/talentdeficit/jsx.git",
+  {git,"https://github.com/talentdeficit/jsx.git",
        {ref,"2d8a7d07da511400475cfc5da649fda0c391f01d"}},
   0},
  {<<"ssl_verify_hostname">>,{pkg,<<"ssl_verify_hostname">>,<<"1.0.1">>},1}].
