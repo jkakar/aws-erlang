@@ -5,7 +5,9 @@
 Here is an example:
 
 ```erlang
-Client = aws_client:make_client(<<"access-key-id">>,
+application:ensure_all_started(aws).
+{ok,[erlware_commons,idna,hackney,jsx,aws]}
+{ok, Client} = aws_client:make_client(<<"access-key-id">>,
                                 <<"secret-access-key">>,
                                 <<"us-east-1">>),
 {ok, Output, _Response} = aws_kinesis:list_streams(Client, #{}, []),
@@ -27,6 +29,8 @@ This outputs:
   remote APIs and what's returned by them.
 * The `hackney` response received for each request is returned alongside the
   response data.
+* The client application can use EC2 instance metadata creds and automatically
+  refresh credentials before they expire
 
 ## License
 
