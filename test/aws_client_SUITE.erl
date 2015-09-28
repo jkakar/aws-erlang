@@ -36,7 +36,7 @@ init_per_group(mecked_metadata, Config) ->
   Role = <<"cedar-wallet-user">>,
   AccessKey = <<"SomeAccessKey">>,
   SecretKey = <<"SecretAccessKey">>,
-  Expiry = <<"2015-09-25T23:43:56Z">>,
+  Expiry = <<"2019-09-25T23:43:56Z">>,
   Body = <<"{
       \"Code\" : \"Success\",
       \"LastUpdated\" : \"2015-09-25T17:19:52Z\",
@@ -44,7 +44,7 @@ init_per_group(mecked_metadata, Config) ->
       \"AccessKeyId\" : \"SomeAccessKey\",
       \"SecretAccessKey\" : \"SecretAccessKey\",
       \"Token\" : \"token\",
-      \"Expiration\" : \"2015-09-25T23:43:56Z\"
+      \"Expiration\" : \"2019-09-25T23:43:56Z\"
    }">>,
   meck:expect(hackney, get, fun(URL) when is_binary(URL) ->
                                 {ok, 200, {}, RoleList};
@@ -76,7 +76,8 @@ test_insert_static_creds(_Config) ->
   AccessKey = <<"SomeAccessKey">>,
   SecretKey = <<"SomeSecretKey">>,
   Region = <<"eu-west-1">>,
-  {ok, Ref} = aws_client:make_client(AccessKey, SecretKey, [{region, Region}]),
+  {ok, Ref} = aws_client:make_client(static, {AccessKey, SecretKey},
+                                     [{region, Region}]),
 
   ?assertMatch(#{region := Region,
                  access_key := AccessKey,
@@ -86,22 +87,23 @@ test_insert_static_creds(_Config) ->
 test_dedup_acces_key(_Config) ->
   AccessKey = <<"SomeOtherAccessKey">>,
   SecretKey = <<"SomeOtherSecretKey">>,
-  {ok, Ref} = aws_client:make_client(AccessKey, SecretKey, []),
+  Region = <<"us-west-1">>,
+  {ok, Ref} = aws_client:make_client(AccessKey, SecretKey, Region),
   ?assertMatch({ok, Ref},
-               aws_client:make_client(AccessKey, SecretKey, [])).
+               aws_client:make_client(static, {AccessKey, SecretKey},
+                                      [{region, Region}])).
 
 fetch_metadata_creds(Config) ->
   AccessKey = ?config(access_key, Config),
   SecretKey = ?config(secret_key, Config),
   Region = <<"eu-west-1">>,
-  {ok, Ref} = aws_client:make_client([{region, Region}]),
+  {ok, Ref} = aws_client:make_client(metadata, [{region, Region}]),
   ?assertMatch(#{region := Region,
                  access_key := AccessKey,
                  secret_key := SecretKey},
                aws_client:get_creds(Ref)).
 
 metadata_dedup(_Config) ->
-  Region = <<"eu-west-1">>,
-  {ok, Ref} = aws_client:make_client([{region, Region}]),
+  {ok, Ref} = aws_client:make_client(),
   ?assertMatch({ok, Ref},
-               aws_client:make_client([{region, Region}])).
+               aws_client:make_client(metadata, [])).

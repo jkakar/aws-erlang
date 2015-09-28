@@ -11,7 +11,7 @@
          handle_call/3, handle_cast/2, handle_info/2]).
 
 -export([start_link/0, stop/0,
-         make_client/1, make_client/2, make_client/3,
+         make_client/0, make_client/2, make_client/3,
          get_creds/1]).
 
 -record(state, {
@@ -26,11 +26,14 @@ start_link() ->
 stop() ->
   gen_server:stop(?MODULE).
 
-make_client(Opts) ->
-  make_client(metadata, Opts).
+make_client() ->
+  make_client(metadata, []).
 make_client(metadata, Opts) ->
   gen_server:call(?MODULE, {add_creds, metadata, Opts}).
-make_client(AccessKey, Secret, Opts) ->
+% Backwards compatibility
+make_client(AccessKey, Secret, Region) when is_binary(Region) ->
+  make_client(static, {AccessKey, Secret}, [{region, Region}]);
+make_client(static, {AccessKey, Secret}, Opts) when is_list(Opts) ->
   gen_server:call(?MODULE, {add_creds, {static, AccessKey, Secret}, Opts}).
 
 get_creds(Ref) ->
@@ -88,7 +91,7 @@ handle_cast(_Message, State) ->
 
 handle_info({refresh_metadata, Ref, Role}, State) ->
   {ok, AccessKey, SecretKey, Expiry} = get_metadata_creds(Role),
-  Creds = get_metadata_creds(Ref),
+  Creds = get_creds(Ref),
   true = ets:insert(creds, {Ref, Creds#{access_key => AccessKey,
                                         secret_key => SecretKey}}),
   setup_update_callback(Expiry, Ref, Role),
