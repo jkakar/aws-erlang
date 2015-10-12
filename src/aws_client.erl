@@ -141,5 +141,14 @@ setup_update_callback(Timestamp, Ref, Role) ->
 
 seconds_until_timestamp(Timestamp) ->
     calendar:datetime_to_gregorian_seconds(iso8601:parse(Timestamp))
-    - (erlang:system_time(seconds)
+    - (erlang_system_seconds()
        + calendar:datetime_to_gregorian_seconds({{1970,1,1},{0,0,0}})).
+
+erlang_system_seconds() ->
+    try
+        erlang:system_time(seconds)
+    catch
+        error:undef -> % Pre 18.0
+            {MegaSecs, Secs, MicroSecs} = os:timestamp(),
+            round(((MegaSecs*1000000 + Secs)*1000000 + MicroSecs) / 1000000)
+    end.
