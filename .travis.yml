@@ -4,7 +4,7 @@ cache:
   directories:
   - $HOME/.cache/rebar3/
 install: "true" # don't let travis run get-deps
-script: "./rebar3 do update, eunit"
+script: "./rebar3 do update, eunit, ct"
 otp_release:
 - 17.5
 - 18.0

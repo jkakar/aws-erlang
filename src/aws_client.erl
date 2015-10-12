@@ -12,9 +12,10 @@
 
 -export([start_link/0, stop/0,
          make_client/0, make_client/2, make_client/3,
-         get_creds/1]).
+         get_creds/1, delete_client/1]).
 
 -record(state, {
+          metadata_ref = undefined :: reference() | undefined
          }).
 %%====================================================================
 %% API
@@ -36,9 +37,12 @@ make_client(AccessKey, Secret, Region) when is_binary(Region) ->
 make_client(static, {AccessKey, Secret}, Opts) when is_list(Opts) ->
     gen_server:call(?MODULE, {add_creds, {static, AccessKey, Secret}, Opts}).
 
+delete_client(Ref) ->
+    %% synchronous to prevent race conditions
+    gen_server:call(?MODULE, {delete, Ref}).
 get_creds(Ref) ->
     case ets:lookup(creds, Ref) of
-        [{_, Creds}] -> Creds;
+        [{_Ref, _Type, Creds}] -> Creds;
         [] -> undefined
     end.
 
@@ -47,47 +51,51 @@ get_creds(Ref) ->
 %%====================================================================
 init(_Args) ->
     ets:new(creds, [set, named_table]),
-    ets:new(creds_dedup, [set, named_table]),
     {ok, #state{}}.
 
 terminate(_Reason, _State) ->
     ok.
 
-handle_call({add_creds, metadata, Opts}, _From, State) ->
-    case ets:lookup(creds_dedup, metadata) of
-        [{_, Ref}] -> {reply, {ok, Ref}, State};
-        [] ->
-            {ok, Role} = get_role(),
-            {ok, AccessKey, SecretKey, Expiry} = get_metadata_creds(Role),
-            {Region, Endpoint} = parse_opts(Opts),
-            Ref = make_ref(),
-            true = ets:insert(creds_dedup, {metadata, Ref}),
-            true = ets:insert(creds, {Ref, #{access_key => AccessKey,
-                                             secret_key => SecretKey,
-                                             region     => Region,
-                                             endpoint   => Endpoint}}),
-            setup_update_callback(Expiry, Ref, Role),
-            {reply, {ok, Ref}, State}
-    end;
+
+%% Only allow one metadata reference to exist
+handle_call({add_creds, metadata, Opts}, _From,
+            State=#state{metadata_ref=undefined}) ->
+    {ok, Role} = get_role(),
+    {ok, AccessKey, SecretKey, Expiry} = get_metadata_creds(Role),
+    {Region, Endpoint} = parse_opts(Opts),
+    Ref = make_ref(),
+    true = ets:insert(creds, {Ref, metadata, #{access_key => AccessKey,
+                                               secret_key => SecretKey,
+                                               region     => Region,
+                                               endpoint   => Endpoint}}),
+    setup_update_callback(Expiry, Ref, Role),
+    {reply, {ok, Ref}, State#state{metadata_ref=Ref}};
+%% Only one metadata reference
+handle_call({add_creds, metadata, _}, _From,
+            State=#state{metadata_ref=Ref}) when is_reference(Ref)->
+    {reply, {ok, Ref}, State};
 handle_call({add_creds, {static, AccessKey, SecretKey}, Opts}, _From, State) ->
-    case ets:lookup(creds_dedup, {static, AccessKey}) of
-        [{_, Ref}] -> {reply, {ok, Ref}, State};
-        [] ->
-            {Region, Endpoint} = parse_opts(Opts),
-            Ref = make_ref(),
-            true = ets:insert(creds_dedup, {{static, AccessKey}, Ref}),
-            true = ets:insert(creds, {Ref, #{access_key => AccessKey,
+    {Region, Endpoint} = parse_opts(Opts),
+    Ref = make_ref(),
+    true = ets:insert(creds, {Ref, static, #{access_key => AccessKey,
                                              secret_key => SecretKey,
                                              region     => Region,
                                              endpoint   => Endpoint}}),
-            {reply, {ok, Ref}, State}
-    end;
+    {reply, {ok, Ref}, State};
+%% Never delete the only metadata reference
+handle_call({delete, Ref}, _From,
+            State=#state{metadata_ref=MetaRef}) when Ref =:= MetaRef ->
+    error_logger:warning_msg("skipping delete of metadata reference"),
+    {reply, ok, State};
+handle_call({delete, Ref}, _From, State) ->
+    ets:delete(creds, Ref),
+    {reply, ok, State};
 handle_call(Args, _From, State) ->
-    error_logger:warning_message("Unknown call ~p~n", [Args]),
+    error_logger:warning_msg("Unknown call ~p~n", [Args]),
     {noreply, State}.
 
 handle_cast(Message, State) ->
-    error_logger:warning_message("Unknown Cast ~p~n", [Message]),
+    error_logger:warning_msg("Unknown Cast ~p~n", [Message]),
     {noreply, State}.
 
 handle_info({refresh_metadata, Ref, Role}, State) ->
@@ -99,7 +107,7 @@ handle_info({refresh_metadata, Ref, Role}, State) ->
     {noreply, State};
 
 handle_info(Message, State) ->
-    error_logger:warning_message("Unknown message ~p~n", [Message]),
+    error_logger:warning_msg("Unknown message ~p~n", [Message]),
     {noreply, State}.
 
 code_change(_Prev, State, _Extra) ->

@@ -7,17 +7,19 @@
          init_per_group/2, end_per_group/2,
          init_per_testcase/2, end_per_testcase/2]).
 -export([test_insert_static_creds/1,
-         test_dedup_acces_key/1,
+         delete_client/1,
          fetch_metadata_creds/1,
-         metadata_dedup/1]).
+         metadata_dedup/1,
+         cant_delete_metadata/1]).
 
 all() -> [test_insert_static_creds,
-          test_dedup_acces_key,
+          delete_client,
           {group, mecked_metadata}].
 
 groups() -> [{mecked_metadata, [],
               [fetch_metadata_creds,
-               metadata_dedup]}].
+               metadata_dedup,
+               cant_delete_metadata]}].
 
 init_per_suite(Config) ->
     application:load(aws),
@@ -69,7 +71,6 @@ end_per_group(mecked_metadata, Config) ->
 init_per_testcase(_, Config) -> Config.
 end_per_testcase(_, Config) ->
     ets:delete_all_objects(creds),
-    ets:delete_all_objects(creds_dedup),
     Config.
 
 test_insert_static_creds(_Config) ->
@@ -84,14 +85,16 @@ test_insert_static_creds(_Config) ->
                    secret_key := SecretKey},
                  aws_client:get_creds(Ref)).
 
-test_dedup_acces_key(_Config) ->
-    AccessKey = <<"SomeOtherAccessKey">>,
-    SecretKey = <<"SomeOtherSecretKey">>,
-    Region = <<"us-west-1">>,
-    {ok, Ref} = aws_client:make_client(AccessKey, SecretKey, Region),
-    ?assertMatch({ok, Ref},
-                 aws_client:make_client(static, {AccessKey, SecretKey},
-                                        [{region, Region}])).
+delete_client(_Config) ->
+    AccessKey = <<"SomeAccessKey">>,
+    SecretKey = <<"SomeSecretKey">>,
+    Region = <<"eu-west-1">>,
+    {ok, Ref} = aws_client:make_client(static, {AccessKey, SecretKey},
+                                       [{region, Region}]),
+    ok = aws_client:delete_client(Ref),
+    %io:format("After: ~p~n", [ets:match(creds, {'$1', '$2', '$3'})]),
+    ?assertMatch(undefined, aws_client:get_creds(Ref)).
+
 
 fetch_metadata_creds(Config) ->
     AccessKey = ?config(access_key, Config),
@@ -107,3 +110,9 @@ metadata_dedup(_Config) ->
     {ok, Ref} = aws_client:make_client(),
     ?assertMatch({ok, Ref},
                  aws_client:make_client(metadata, [])).
+
+cant_delete_metadata(_Config) ->
+   {ok, Ref} = aws_client:make_client(),
+   Creds = aws_client:get_creds(Ref),
+   ?assertMatch(ok, aws_client:delete_client(Ref)),
+   ?assertMatch(Creds, aws_client:get_creds(Ref)).
