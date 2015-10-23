@@ -47,7 +47,7 @@ init_per_group(mecked_metadata, Config) ->
       \"SecretAccessKey\" : \"SecretAccessKey\",
       \"Token\" : \"token\",
       \"Expiration\" : \"2019-09-25T23:43:56Z\"
-   }">>,
+    }">>,
     meck:expect(hackney, get, fun(URL) when is_binary(URL) ->
                                       {ok, 200, {}, RoleList};
                                  ([URL, Rolef]) when is_binary(URL)

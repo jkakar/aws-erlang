@@ -3,7 +3,7 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module('aws_client_sup').
+-module(aws_client_sup).
 
 -behaviour(supervisor).
 

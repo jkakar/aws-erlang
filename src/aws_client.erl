@@ -21,25 +21,47 @@
 %% API
 %%====================================================================
 
+%% @doc Start the server that holds the credentials
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
+%% @doc Stop the server that holds the credentials
 stop() ->
     gen_server:stop(?MODULE).
 
+%% @doc Make a new client from EC2 instance metadata
+%% returns a reference that can be passed to get_creds
 make_client() ->
     make_client(metadata, []).
+
+%% @doc Make a new client from EC2 instance metadata. First arg is the atom
+%% 'metadata, Opts is a proplist containing
+%% region and/or endpoint domain.
+%% returns a reference that can be passed to get_creds
 make_client(metadata, Opts) ->
     gen_server:call(?MODULE, {add_creds, metadata, Opts}).
-% Backwards compatibility
+
+%% @doc Make a new client from provided credentials.
+%% Comes in two forms:
+%% 'static', {AccessKey, Secret}, Opts (where Opts is a proplist containing
+%% region and or endpoint)
+%% AccessKey, Secret, Region - for backwards-compatibility. May eventually be
+%% removed.
+%% returns a reference that can be passed to get_creds
 make_client(AccessKey, Secret, Region) when is_binary(Region) ->
     make_client(static, {AccessKey, Secret}, [{region, Region}]);
 make_client(static, {AccessKey, Secret}, Opts) when is_list(Opts) ->
     gen_server:call(?MODULE, {add_creds, {static, AccessKey, Secret}, Opts}).
 
+%% @doc Given a reference returned from make_client, delete a client. Will
+%% silently ignore requests to delete the metadata reference, only deletes
+%% static credentials.
 delete_client(Ref) ->
     %% synchronous to prevent race conditions
     gen_server:call(?MODULE, {delete, Ref}).
+
+%% @doc Given a reference returned from make_client, get a map of credentials.
+%% This will be called by each individual AWS component module.
 get_creds(Ref) ->
     case ets:lookup(creds, Ref) of
         [{_Ref, _Type, Creds}] -> Creds;
@@ -136,19 +158,7 @@ get_metadata_creds(Role) ->
      maps:get(<<"Expiration">>, Map)}.
 
 setup_update_callback(Timestamp, Ref, Role) ->
-    AlertAt = seconds_until_timestamp(Timestamp) - ?ALERT_BEFORE_EXPIRY,
+    AlertAt = aws_util:seconds_until_timestamp(Timestamp) - ?ALERT_BEFORE_EXPIRY,
     erlang:send_after(AlertAt, ?MODULE, {refresh_metadata, Ref, Role}).
 
-seconds_until_timestamp(Timestamp) ->
-    calendar:datetime_to_gregorian_seconds(iso8601:parse(Timestamp))
-    - (erlang_system_seconds()
-       + calendar:datetime_to_gregorian_seconds({{1970,1,1},{0,0,0}})).
 
-erlang_system_seconds() ->
-    try
-        erlang:system_time(seconds)
-    catch
-        error:undef -> % Pre 18.0
-            {MegaSecs, Secs, MicroSecs} = os:timestamp(),
-            round(((MegaSecs*1000000 + Secs)*1000000 + MicroSecs) / 1000000)
-    end.

@@ -3,7 +3,7 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module('aws_client_app').
+-module(aws_client_app).
 
 -behaviour(application).
 
@@ -16,7 +16,7 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
-    'aws_client_sup':start_link().
+    aws_client_sup:start_link().
 
 %%--------------------------------------------------------------------
 stop(_State) ->
