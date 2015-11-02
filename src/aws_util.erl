@@ -4,7 +4,8 @@
          binary_join/2,
          hmac_sha256/2,
          hmac_sha256_hexdigest/2,
-         sha256_hexdigest/1]).
+         sha256_hexdigest/1,
+         seconds_until_timestamp/1]).
 
 %%====================================================================
 %% API
@@ -33,6 +34,20 @@ hmac_sha256(Key, Message) ->
 %% Create a SHA256 hexdigest for Value.
 sha256_hexdigest(Value) ->
     aws_util:base16(crypto:hash(sha256, Value)).
+
+seconds_until_timestamp(Timestamp) ->
+    calendar:datetime_to_gregorian_seconds(iso8601:parse(Timestamp))
+    - (erlang_system_seconds()
+       + calendar:datetime_to_gregorian_seconds({{1970,1,1},{0,0,0}})).
+
+erlang_system_seconds() ->
+    try
+        erlang:system_time(seconds)
+    catch
+        error:undef -> % Pre 18.0
+            {MegaSecs, Secs, MicroSecs} = os:timestamp(),
+            round(((MegaSecs*1000000 + Secs)*1000000 + MicroSecs) / 1000000)
+    end.
 
 %%====================================================================
 %% Internal functions

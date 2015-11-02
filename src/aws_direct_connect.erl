@@ -77,10 +77,10 @@
 %% Allocates a VLAN number and a specified amount of bandwidth for use by a
 %% hosted connection on the given interconnect.
 allocate_connection_on_interconnect(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     allocate_connection_on_interconnect(Client, Input, []).
 allocate_connection_on_interconnect(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AllocateConnectionOnInterconnect">>, Input, Options).
 
 %% @doc Provisions a private virtual interface to be owned by a different
@@ -94,10 +94,10 @@ allocate_connection_on_interconnect(Client, Input, Options)
 %% this step has been completed, the virtual interface will be in
 %% 'Confirming' state, and will not be available for handling traffic.
 allocate_private_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     allocate_private_virtual_interface(Client, Input, []).
 allocate_private_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AllocatePrivateVirtualInterface">>, Input, Options).
 
 %% @doc Provisions a public virtual interface to be owned by a different
@@ -111,10 +111,10 @@ allocate_private_virtual_interface(Client, Input, Options)
 %% this step has been completed, the virtual interface will be in
 %% 'Confirming' state, and will not be available for handling traffic.
 allocate_public_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     allocate_public_virtual_interface(Client, Input, []).
 allocate_public_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AllocatePublicVirtualInterface">>, Input, Options).
 
 %% @doc Confirm the creation of a hosted connection on an interconnect.
@@ -123,10 +123,10 @@ allocate_public_virtual_interface(Client, Input, Options)
 %% and will remain in this state until the owner calls ConfirmConnection to
 %% confirm creation of the hosted connection.
 confirm_connection(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     confirm_connection(Client, Input, []).
 confirm_connection(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ConfirmConnection">>, Input, Options).
 
 %% @doc Accept ownership of a private virtual interface created by another
@@ -136,10 +136,10 @@ confirm_connection(Client, Input, Options)
 %% interface will be created and attached to the given virtual private
 %% gateway, and will be available for handling traffic.
 confirm_private_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     confirm_private_virtual_interface(Client, Input, []).
 confirm_private_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ConfirmPrivateVirtualInterface">>, Input, Options).
 
 %% @doc Accept ownership of a public virtual interface created by another
@@ -148,10 +148,10 @@ confirm_private_virtual_interface(Client, Input, Options)
 %% After the virtual interface owner calls this function, the specified
 %% virtual interface will be created and made available for handling traffic.
 confirm_public_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     confirm_public_virtual_interface(Client, Input, []).
 confirm_public_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ConfirmPublicVirtualInterface">>, Input, Options).
 
 %% @doc Creates a new connection between the customer network and a specific
@@ -165,10 +165,10 @@ confirm_public_virtual_interface(Client, Input, Options)
 %% connections with AWS Direct Connect locations in multiple regions, but a
 %% connection in one region does not provide connectivity to other regions.
 create_connection(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_connection(Client, Input, []).
 create_connection(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateConnection">>, Input, Options).
 
 %% @doc Creates a new interconnect between a AWS Direct Connect partner's
@@ -189,10 +189,10 @@ create_connection(Client, Input, Options)
 %% resources by creating a virtual interface on their connection, using the
 %% VLAN assigned to them by the AWS Direct Connect partner.
 create_interconnect(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_interconnect(Client, Input, []).
 create_interconnect(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateInterconnect">>, Input, Options).
 
 %% @doc Creates a new private virtual interface. A virtual interface is the
@@ -200,10 +200,10 @@ create_interconnect(Client, Input, Options)
 %% interface supports sending traffic to a single virtual private cloud
 %% (VPC).
 create_private_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_private_virtual_interface(Client, Input, []).
 create_private_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreatePrivateVirtualInterface">>, Input, Options).
 
 %% @doc Creates a new public virtual interface. A virtual interface is the
@@ -211,10 +211,10 @@ create_private_virtual_interface(Client, Input, Options)
 %% interface supports sending traffic to public services of AWS such as
 %% Amazon Simple Storage Service (Amazon S3).
 create_public_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_public_virtual_interface(Client, Input, []).
 create_public_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreatePublicVirtualInterface">>, Input, Options).
 
 %% @doc Deletes the connection.
@@ -224,26 +224,26 @@ create_public_virtual_interface(Client, Input, Options)
 %% services or charges for cross-connects or network circuits that connect
 %% you to the AWS Direct Connect location.
 delete_connection(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_connection(Client, Input, []).
 delete_connection(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteConnection">>, Input, Options).
 
 %% @doc Deletes the specified interconnect.
 delete_interconnect(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_interconnect(Client, Input, []).
 delete_interconnect(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteInterconnect">>, Input, Options).
 
 %% @doc Deletes a virtual interface.
 delete_virtual_interface(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_virtual_interface(Client, Input, []).
 delete_virtual_interface(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteVirtualInterface">>, Input, Options).
 
 %% @doc Displays all connections in this region.
@@ -251,19 +251,19 @@ delete_virtual_interface(Client, Input, Options)
 %% If a connection ID is provided, the call returns only that particular
 %% connection.
 describe_connections(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_connections(Client, Input, []).
 describe_connections(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeConnections">>, Input, Options).
 
 %% @doc Return a list of connections that have been provisioned on the given
 %% interconnect.
 describe_connections_on_interconnect(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_connections_on_interconnect(Client, Input, []).
 describe_connections_on_interconnect(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeConnectionsOnInterconnect">>, Input, Options).
 
 %% @doc Returns a list of interconnects owned by the AWS account.
@@ -271,20 +271,20 @@ describe_connections_on_interconnect(Client, Input, Options)
 %% If an interconnect ID is provided, it will only return this particular
 %% interconnect.
 describe_interconnects(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_interconnects(Client, Input, []).
 describe_interconnects(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeInterconnects">>, Input, Options).
 
 %% @doc Returns the list of AWS Direct Connect locations in the current AWS
 %% region. These are the locations that may be selected when calling
 %% CreateConnection or CreateInterconnect.
 describe_locations(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_locations(Client, Input, []).
 describe_locations(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeLocations">>, Input, Options).
 
 %% @doc Returns a list of virtual private gateways owned by the AWS account.
@@ -295,10 +295,10 @@ describe_locations(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html">EC2
 %% CreateVpnGateway</a> action.
 describe_virtual_gateways(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_virtual_gateways(Client, Input, []).
 describe_virtual_gateways(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeVirtualGateways">>, Input, Options).
 
 %% @doc Displays all virtual interfaces for an AWS account. Virtual
@@ -315,17 +315,18 @@ describe_virtual_gateways(Client, Input, Options)
 %% specified connection will be returned. If a virtual interface ID is
 %% provided, only this particular virtual interface will be returned.
 describe_virtual_interfaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_virtual_interfaces(Client, Input, []).
 describe_virtual_interfaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeVirtualInterfaces">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"directconnect">>},
     Host = aws_util:binary_join([<<"directconnect.">>,
                                  maps:get(region, Client1),

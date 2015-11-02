@@ -147,10 +147,10 @@
 %% Note that you cannot create or update an alias that represents a key in
 %% another account.
 create_alias(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_alias(Client, Input, []).
 create_alias(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateAlias">>, Input, Options).
 
 %% @doc Adds a grant to a key to specify who can access the key and under
@@ -162,10 +162,10 @@ create_alias(Client, Input, Options)
 %% <li><a>ListGrants</a></li> <li><a>RetireGrant</a></li>
 %% <li><a>RevokeGrant</a></li> </ol>
 create_grant(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_grant(Client, Input, []).
 create_grant(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateGrant">>, Input, Options).
 
 %% @doc Creates a customer master key. Customer master keys can be used to
@@ -174,10 +174,10 @@ create_grant(Client, Input, Options)
 %% encrypt customer data. For more information about data keys, see
 %% <a>GenerateDataKey</a> and <a>GenerateDataKeyWithoutPlaintext</a>.
 create_key(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_key(Client, Input, []).
 create_key(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateKey">>, Input, Options).
 
 %% @doc Decrypts ciphertext. Ciphertext is plaintext that has been previously
@@ -196,61 +196,61 @@ create_key(Client, Input, Options)
 %% IAM user policy, you should scope the resource to specific keys or to
 %% specific trusted accounts.
 decrypt(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     decrypt(Client, Input, []).
 decrypt(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"Decrypt">>, Input, Options).
 
 %% @doc Deletes the specified alias. To associate an alias with a different
 %% key, call <a>UpdateAlias</a>.
 delete_alias(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_alias(Client, Input, []).
 delete_alias(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteAlias">>, Input, Options).
 
 %% @doc Provides detailed information about the specified customer master
 %% key.
 describe_key(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_key(Client, Input, []).
 describe_key(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeKey">>, Input, Options).
 
 %% @doc Marks a key as disabled, thereby preventing its use.
 disable_key(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     disable_key(Client, Input, []).
 disable_key(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DisableKey">>, Input, Options).
 
 %% @doc Disables rotation of the specified key.
 disable_key_rotation(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     disable_key_rotation(Client, Input, []).
 disable_key_rotation(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DisableKeyRotation">>, Input, Options).
 
 %% @doc Marks a key as enabled, thereby permitting its use. You can have up
 %% to 25 enabled keys at one time.
 enable_key(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     enable_key(Client, Input, []).
 enable_key(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"EnableKey">>, Input, Options).
 
 %% @doc Enables rotation of the specified customer master key.
 enable_key_rotation(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     enable_key_rotation(Client, Input, []).
 enable_key_rotation(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"EnableKeyRotation">>, Input, Options).
 
 %% @doc Encrypts plaintext into ciphertext by using a customer master key.
@@ -274,10 +274,10 @@ enable_key_rotation(Client, Input, Options)
 %% encryption key and a copy of the key encrypted under the customer master
 %% key (CMK) of your choosing.
 encrypt(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     encrypt(Client, Input, []).
 encrypt(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"Encrypt">>, Input, Options).
 
 %% @doc Generates a data key that you can use in your application to locally
@@ -316,10 +316,10 @@ encrypt(Client, Input, Options)
 %% generated the key. The encryption context is logged by CloudTrail, and you
 %% can use this log to help track the use of particular data.
 generate_data_key(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     generate_data_key(Client, Input, []).
 generate_data_key(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GenerateDataKey">>, Input, Options).
 
 %% @doc Returns a data key encrypted by a customer master key without the
@@ -328,75 +328,75 @@ generate_data_key(Client, Input, Options)
 %% audit requirement that an encrypted key be made available without exposing
 %% the plaintext copy of that key.
 generate_data_key_without_plaintext(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     generate_data_key_without_plaintext(Client, Input, []).
 generate_data_key_without_plaintext(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GenerateDataKeyWithoutPlaintext">>, Input, Options).
 
 %% @doc Generates an unpredictable byte string.
 generate_random(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     generate_random(Client, Input, []).
 generate_random(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GenerateRandom">>, Input, Options).
 
 %% @doc Retrieves a policy attached to the specified key.
 get_key_policy(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_key_policy(Client, Input, []).
 get_key_policy(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetKeyPolicy">>, Input, Options).
 
 %% @doc Retrieves a Boolean value that indicates whether key rotation is
 %% enabled for the specified key.
 get_key_rotation_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_key_rotation_status(Client, Input, []).
 get_key_rotation_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetKeyRotationStatus">>, Input, Options).
 
 %% @doc Lists all of the key aliases in the account.
 list_aliases(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_aliases(Client, Input, []).
 list_aliases(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListAliases">>, Input, Options).
 
 %% @doc List the grants for a specified key.
 list_grants(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_grants(Client, Input, []).
 list_grants(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListGrants">>, Input, Options).
 
 %% @doc Retrieves a list of policies attached to a key.
 list_key_policies(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_key_policies(Client, Input, []).
 list_key_policies(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListKeyPolicies">>, Input, Options).
 
 %% @doc Lists the customer master keys.
 list_keys(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_keys(Client, Input, []).
 list_keys(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListKeys">>, Input, Options).
 
 %% @doc Attaches a policy to the specified key.
 put_key_policy(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_key_policy(Client, Input, []).
 put_key_policy(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutKeyPolicy">>, Input, Options).
 
 %% @doc Encrypts data on the server side with a new customer master key
@@ -413,10 +413,10 @@ put_key_policy(Client, Input, Options)
 %% through the console but must be included manually when you set a policy by
 %% using the <a>PutKeyPolicy</a> function.
 re_encrypt(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     re_encrypt(Client, Input, []).
 re_encrypt(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ReEncrypt">>, Input, Options).
 
 %% @doc Retires a grant. You can retire a grant when you're done using it to
@@ -431,19 +431,19 @@ re_encrypt(Client, Input, Options)
 %% character unique identifier of a grant. Both are returned by the
 %% <code>CreateGrant</code> function.
 retire_grant(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     retire_grant(Client, Input, []).
 retire_grant(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RetireGrant">>, Input, Options).
 
 %% @doc Revokes a grant. You can revoke a grant to actively deny operations
 %% that depend on it.
 revoke_grant(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     revoke_grant(Client, Input, []).
 revoke_grant(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RevokeGrant">>, Input, Options).
 
 %% @doc Updates an alias to associate it with a different key.
@@ -461,25 +461,26 @@ revoke_grant(Client, Input, Options)
 %% Note that you cannot create or update an alias that represents a key in
 %% another account.
 update_alias(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_alias(Client, Input, []).
 update_alias(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateAlias">>, Input, Options).
 
 %% @doc Updates the description of a key.
 update_key_description(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_key_description(Client, Input, []).
 update_key_description(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateKeyDescription">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"kms">>},
     Host = aws_util:binary_join([<<"kms.">>,
                                  maps:get(region, Client1),

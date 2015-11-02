@@ -36,10 +36,10 @@
 %%
 %% </note>
 create_workspaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_workspaces(Client, Input, []).
 create_workspaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateWorkspaces">>, Input, Options).
 
 %% @doc Obtains information about the WorkSpace bundles that are available to
@@ -54,10 +54,10 @@ create_workspaces(Client, Input, Options)
 %% that you pass in the next call to this operation to retrieve the next set
 %% of items.
 describe_workspace_bundles(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_workspace_bundles(Client, Input, []).
 describe_workspace_bundles(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeWorkspaceBundles">>, Input, Options).
 
 %% @doc Retrieves information about the AWS Directory Service directories in
@@ -70,10 +70,10 @@ describe_workspace_bundles(Client, Input, Options)
 %% that you pass in the next call to this operation to retrieve the next set
 %% of items.
 describe_workspace_directories(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_workspace_directories(Client, Input, []).
 describe_workspace_directories(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeWorkspaceDirectories">>, Input, Options).
 
 %% @doc Obtains information about the specified WorkSpaces.
@@ -88,10 +88,10 @@ describe_workspace_directories(Client, Input, Options)
 %% that you pass in the next call to this operation to retrieve the next set
 %% of items.
 describe_workspaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_workspaces(Client, Input, []).
 describe_workspaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeWorkspaces">>, Input, Options).
 
 %% @doc Reboots the specified WorkSpaces.
@@ -105,10 +105,10 @@ describe_workspaces(Client, Input, Options)
 %%
 %% </note>
 reboot_workspaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     reboot_workspaces(Client, Input, []).
 reboot_workspaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RebootWorkspaces">>, Input, Options).
 
 %% @doc Rebuilds the specified WorkSpaces.
@@ -131,10 +131,10 @@ reboot_workspaces(Client, Input, Options)
 %%
 %% </note>
 rebuild_workspaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     rebuild_workspaces(Client, Input, []).
 rebuild_workspaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RebuildWorkspaces">>, Input, Options).
 
 %% @doc Terminates the specified WorkSpaces.
@@ -152,17 +152,18 @@ rebuild_workspaces(Client, Input, Options)
 %%
 %% </note>
 terminate_workspaces(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     terminate_workspaces(Client, Input, []).
 terminate_workspaces(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"TerminateWorkspaces">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"workspaces">>},
     Host = aws_util:binary_join([<<"workspaces.">>,
                                  maps:get(region, Client1),

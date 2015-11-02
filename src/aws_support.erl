@@ -100,10 +100,10 @@
 %% indicates when the set expires. The maximum number of attachments in a set
 %% is 3, and the maximum size of any attachment in the set is 5 MB.
 add_attachments_to_set(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_attachments_to_set(Client, Input, []).
 add_attachments_to_set(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddAttachmentsToSet">>, Input, Options).
 
 %% @doc Adds additional customer communication to an AWS Support case. You
@@ -118,10 +118,10 @@ add_attachments_to_set(Client, Input, Options)
 %% This operation implements a subset of the features of the AWS Support
 %% Center.
 add_communication_to_case(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_communication_to_case(Client, Input, []).
 add_communication_to_case(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddCommunicationToCase">>, Input, Options).
 
 %% @doc Creates a new case in the AWS Support Center. This operation is
@@ -166,10 +166,10 @@ add_communication_to_case(Client, Input, Options)
 %% number. Case numbers are used by the <a>DescribeCases</a> operation to
 %% retrieve existing AWS Support cases.
 create_case(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_case(Client, Input, []).
 create_case(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateCase">>, Input, Options).
 
 %% @doc Returns the attachment that has the specified ID. Attachment IDs are
@@ -178,10 +178,10 @@ create_case(Client, Input, Options)
 %% <a>AttachmentDetails</a> objects that are returned by the
 %% <a>DescribeCommunications</a> operation.
 describe_attachment(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_attachment(Client, Input, []).
 describe_attachment(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeAttachment">>, Input, Options).
 
 %% @doc Returns a list of cases that you specify by passing one or more case
@@ -201,10 +201,10 @@ describe_attachment(Client, Input, Options)
 %% returned records represented by the <code>CaseDetails</code> objects.</li>
 %% </ol>
 describe_cases(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_cases(Client, Input, []).
 describe_cases(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeCases">>, Input, Options).
 
 %% @doc Returns communications (and attachments) for one or more support
@@ -221,10 +221,10 @@ describe_cases(Client, Input, Options)
 %% page, and use <code>NextToken</code> to specify the resumption of
 %% pagination.
 describe_communications(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_communications(Client, Input, []).
 describe_communications(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeCommunications">>, Input, Options).
 
 %% @doc Returns the current list of AWS services and a list of service
@@ -242,30 +242,30 @@ describe_communications(Client, Input, Options)
 %% categories obtained programmatically. This practice ensures that you
 %% always have the most recent set of service and category codes.
 describe_services(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_services(Client, Input, []).
 describe_services(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeServices">>, Input, Options).
 
 %% @doc Returns the list of severity levels that you can assign to an AWS
 %% Support case. The severity level for a case is also a field in the
 %% <a>CaseDetails</a> data type included in any <a>CreateCase</a> request.
 describe_severity_levels(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_severity_levels(Client, Input, []).
 describe_severity_levels(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeSeverityLevels">>, Input, Options).
 
 %% @doc Returns the refresh status of the Trusted Advisor checks that have
 %% the specified check IDs. Check IDs can be obtained by calling
 %% <a>DescribeTrustedAdvisorChecks</a>.
 describe_trusted_advisor_check_refresh_statuses(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_trusted_advisor_check_refresh_statuses(Client, Input, []).
 describe_trusted_advisor_check_refresh_statuses(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTrustedAdvisorCheckRefreshStatuses">>, Input, Options).
 
 %% @doc Returns the results of the Trusted Advisor check that has the
@@ -285,10 +285,10 @@ describe_trusted_advisor_check_refresh_statuses(Client, Input, Options)
 %% <b>Timestamp.</b> The time of the last refresh of the check.</li> <li>
 %% <b>CheckId.</b> The unique identifier for the check.</li> </ul>
 describe_trusted_advisor_check_result(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_trusted_advisor_check_result(Client, Input, []).
 describe_trusted_advisor_check_result(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTrustedAdvisorCheckResult">>, Input, Options).
 
 %% @doc Returns the summaries of the results of the Trusted Advisor checks
@@ -298,10 +298,10 @@ describe_trusted_advisor_check_result(Client, Input, Options)
 %% The response contains an array of <a>TrustedAdvisorCheckSummary</a>
 %% objects.
 describe_trusted_advisor_check_summaries(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_trusted_advisor_check_summaries(Client, Input, []).
 describe_trusted_advisor_check_summaries(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTrustedAdvisorCheckSummaries">>, Input, Options).
 
 %% @doc Returns information about all available Trusted Advisor checks,
@@ -310,10 +310,10 @@ describe_trusted_advisor_check_summaries(Client, Input, Options)
 %% supported. The response contains a <a>TrustedAdvisorCheckDescription</a>
 %% for each check.
 describe_trusted_advisor_checks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_trusted_advisor_checks(Client, Input, []).
 describe_trusted_advisor_checks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTrustedAdvisorChecks">>, Input, Options).
 
 %% @doc Requests a refresh of the Trusted Advisor check that has the
@@ -329,27 +329,28 @@ describe_trusted_advisor_checks(Client, Input, Options)
 %% until the check is eligible for refresh.</li> <li> <b>CheckId.</b> The
 %% unique identifier for the check.</li> </ul>
 refresh_trusted_advisor_check(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     refresh_trusted_advisor_check(Client, Input, []).
 refresh_trusted_advisor_check(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RefreshTrustedAdvisorCheck">>, Input, Options).
 
 %% @doc Takes a <code>CaseId</code> and returns the initial state of the case
 %% along with the state of the case after the call to <a>ResolveCase</a>
 %% completed.
 resolve_case(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     resolve_case(Client, Input, []).
 resolve_case(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ResolveCase">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"support">>},
     Host = aws_util:binary_join([<<"support.">>,
                                  maps:get(region, Client1),

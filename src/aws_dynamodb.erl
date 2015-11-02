@@ -215,10 +215,10 @@
 %% href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations">Capacity
 %% Units Calculations</a> in the <i>Amazon DynamoDB Developer Guide</i>.
 batch_get_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     batch_get_item(Client, Input, []).
 batch_get_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"BatchGetItem">>, Input, Options).
 
 %% @doc The <i>BatchWriteItem</i> operation puts or deletes multiple items in
@@ -302,10 +302,10 @@ batch_get_item(Client, Input, Options)
 %%
 %% </li> </ul>
 batch_write_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     batch_write_item(Client, Input, []).
 batch_write_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"BatchWriteItem">>, Input, Options).
 
 %% @doc The <i>CreateTable</i> operation adds a new table to your account. In
@@ -327,10 +327,10 @@ batch_write_item(Client, Input, Options)
 %%
 %% You can use the <i>DescribeTable</i> API to check the table status.
 create_table(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_table(Client, Input, []).
 create_table(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateTable">>, Input, Options).
 
 %% @doc Deletes a single item in a table by primary key. You can perform a
@@ -348,10 +348,10 @@ create_table(Client, Input, Options)
 %% conditions are met. If those conditions are met, DynamoDB performs the
 %% delete. Otherwise, the item is not deleted.
 delete_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_item(Client, Input, []).
 delete_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteItem">>, Input, Options).
 
 %% @doc The <i>DeleteTable</i> operation deletes a table and all of its
@@ -376,10 +376,10 @@ delete_item(Client, Input, Options)
 %%
 %% Use the <i>DescribeTable</i> API to check the status of the table.
 delete_table(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_table(Client, Input, []).
 delete_table(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteTable">>, Input, Options).
 
 %% @doc Returns information about the table, including the current status of
@@ -394,10 +394,10 @@ delete_table(Client, Input, Options)
 %%
 %% </note>
 describe_table(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_table(Client, Input, []).
 describe_table(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTable">>, Input, Options).
 
 %% @doc The <i>GetItem</i> operation returns a set of attributes for the item
@@ -410,20 +410,20 @@ describe_table(Client, Input, Options)
 %% time than an eventually consistent read, it always returns the last
 %% updated value.
 get_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_item(Client, Input, []).
 get_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetItem">>, Input, Options).
 
 %% @doc Returns an array of table names associated with the current account
 %% and endpoint. The output from <i>ListTables</i> is paginated, with each
 %% page returning a maximum of 100 table names.
 list_tables(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_tables(Client, Input, []).
 list_tables(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTables">>, Input, Options).
 
 %% @doc Creates a new item, or replaces an old item with a new item. If an
@@ -454,10 +454,10 @@ list_tables(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">Working
 %% with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.
 put_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_item(Client, Input, []).
 put_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutItem">>, Input, Options).
 
 %% @doc A <i>Query</i> operation uses the primary key of a table or a
@@ -489,10 +489,10 @@ put_item(Client, Input, Options)
 %% consistent reads only, so do not specify <i>ConsistentRead</i> when
 %% querying a global secondary index.
 query(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     query(Client, Input, []).
 query(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"Query">>, Input, Options).
 
 %% @doc The <i>Scan</i> operation returns one or more items and item
@@ -518,10 +518,10 @@ query(Client, Input, Options)
 %% consistent reads instead by setting the <i>ConsistentRead</i> parameter to
 %% <i>true</i>.
 scan(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     scan(Client, Input, []).
 scan(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"Scan">>, Input, Options).
 
 %% @doc Edits an existing item's attributes, or adds a new item to the table
@@ -535,10 +535,10 @@ scan(Client, Input, Options)
 %% You can also return the item's attribute values in the same
 %% <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
 update_item(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_item(Client, Input, []).
 update_item(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateItem">>, Input, Options).
 
 %% @doc Modifies the provisioned throughput settings, global secondary
@@ -562,17 +562,18 @@ update_item(Client, Input, Options)
 %% another <i>UpdateTable</i> request. When the table returns to the
 %% <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is complete.
 update_table(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_table(Client, Input, []).
 update_table(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateTable">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"dynamodb">>},
     Host = aws_util:binary_join([<<"dynamodb.">>,
                                  maps:get(region, Client1),

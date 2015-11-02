@@ -116,10 +116,10 @@
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 count_closed_workflow_executions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     count_closed_workflow_executions(Client, Input, []).
 count_closed_workflow_executions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CountClosedWorkflowExecutions">>, Input, Options).
 
 %% @doc Returns the number of open workflow executions within the given
@@ -149,10 +149,10 @@ count_closed_workflow_executions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 count_open_workflow_executions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     count_open_workflow_executions(Client, Input, []).
 count_open_workflow_executions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CountOpenWorkflowExecutions">>, Input, Options).
 
 %% @doc Returns the estimated number of activity tasks in the specified task
@@ -178,10 +178,10 @@ count_open_workflow_executions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 count_pending_activity_tasks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     count_pending_activity_tasks(Client, Input, []).
 count_pending_activity_tasks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CountPendingActivityTasks">>, Input, Options).
 
 %% @doc Returns the estimated number of decision tasks in the specified task
@@ -207,10 +207,10 @@ count_pending_activity_tasks(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 count_pending_decision_tasks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     count_pending_decision_tasks(Client, Input, []).
 count_pending_decision_tasks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CountPendingDecisionTasks">>, Input, Options).
 
 %% @doc Deprecates the specified <i>activity type</i>. After an activity type
@@ -241,10 +241,10 @@ count_pending_decision_tasks(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 deprecate_activity_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deprecate_activity_type(Client, Input, []).
 deprecate_activity_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeprecateActivityType">>, Input, Options).
 
 %% @doc Deprecates the specified domain. After a domain has been deprecated
@@ -272,10 +272,10 @@ deprecate_activity_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 deprecate_domain(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deprecate_domain(Client, Input, []).
 deprecate_domain(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeprecateDomain">>, Input, Options).
 
 %% @doc Deprecates the specified <i>workflow type</i>. After a workflow type
@@ -307,10 +307,10 @@ deprecate_domain(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 deprecate_workflow_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deprecate_workflow_type(Client, Input, []).
 deprecate_workflow_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeprecateWorkflowType">>, Input, Options).
 
 %% @doc Returns information about the specified activity type. This includes
@@ -338,10 +338,10 @@ deprecate_workflow_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 describe_activity_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_activity_type(Client, Input, []).
 describe_activity_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeActivityType">>, Input, Options).
 
 %% @doc Returns information about the specified domain, including description
@@ -363,10 +363,10 @@ describe_activity_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 describe_domain(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_domain(Client, Input, []).
 describe_domain(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeDomain">>, Input, Options).
 
 %% @doc Returns information about the specified workflow execution including
@@ -390,10 +390,10 @@ describe_domain(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 describe_workflow_execution(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_workflow_execution(Client, Input, []).
 describe_workflow_execution(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeWorkflowExecution">>, Input, Options).
 
 %% @doc Returns information about the specified <i>workflow type</i>. This
@@ -421,10 +421,10 @@ describe_workflow_execution(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 describe_workflow_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_workflow_type(Client, Input, []).
 describe_workflow_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeWorkflowType">>, Input, Options).
 
 %% @doc Returns the history of the specified workflow execution. The results
@@ -450,10 +450,10 @@ describe_workflow_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 get_workflow_execution_history(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_workflow_execution_history(Client, Input, []).
 get_workflow_execution_history(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetWorkflowExecutionHistory">>, Input, Options).
 
 %% @doc Returns information about all activities registered in the specified
@@ -479,10 +479,10 @@ get_workflow_execution_history(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 list_activity_types(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_activity_types(Client, Input, []).
 list_activity_types(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListActivityTypes">>, Input, Options).
 
 %% @doc Returns a list of closed workflow executions in the specified domain
@@ -514,10 +514,10 @@ list_activity_types(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 list_closed_workflow_executions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_closed_workflow_executions(Client, Input, []).
 list_closed_workflow_executions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListClosedWorkflowExecutions">>, Input, Options).
 
 %% @doc Returns the list of domains registered in the account. The results
@@ -544,10 +544,10 @@ list_closed_workflow_executions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 list_domains(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_domains(Client, Input, []).
 list_domains(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListDomains">>, Input, Options).
 
 %% @doc Returns a list of open workflow executions in the specified domain
@@ -579,10 +579,10 @@ list_domains(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 list_open_workflow_executions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_open_workflow_executions(Client, Input, []).
 list_open_workflow_executions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListOpenWorkflowExecutions">>, Input, Options).
 
 %% @doc Returns information about workflow types in the specified domain. The
@@ -605,10 +605,10 @@ list_open_workflow_executions(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 list_workflow_types(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_workflow_types(Client, Input, []).
 list_workflow_types(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListWorkflowTypes">>, Input, Options).
 
 %% @doc Used by workers to get an <a>ActivityTask</a> from the specified
@@ -641,10 +641,10 @@ list_workflow_types(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 poll_for_activity_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     poll_for_activity_task(Client, Input, []).
 poll_for_activity_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PollForActivityTask">>, Input, Options).
 
 %% @doc Used by deciders to get a <a>DecisionTask</a> from the specified
@@ -688,10 +688,10 @@ poll_for_activity_task(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 poll_for_decision_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     poll_for_decision_task(Client, Input, []).
 poll_for_decision_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PollForDecisionTask">>, Input, Options).
 
 %% @doc Used by activity workers to report to the service that the
@@ -739,10 +739,10 @@ poll_for_decision_task(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 record_activity_task_heartbeat(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     record_activity_task_heartbeat(Client, Input, []).
 record_activity_task_heartbeat(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RecordActivityTaskHeartbeat">>, Input, Options).
 
 %% @doc Registers a new <i>activity type</i> along with its configuration
@@ -773,10 +773,10 @@ record_activity_task_heartbeat(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 register_activity_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_activity_type(Client, Input, []).
 register_activity_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterActivityType">>, Input, Options).
 
 %% @doc Registers a new domain.
@@ -798,10 +798,10 @@ register_activity_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 register_domain(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_domain(Client, Input, []).
 register_domain(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterDomain">>, Input, Options).
 
 %% @doc Registers a new <i>workflow type</i> and its configuration settings
@@ -835,10 +835,10 @@ register_domain(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 register_workflow_type(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_workflow_type(Client, Input, []).
 register_workflow_type(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterWorkflowType">>, Input, Options).
 
 %% @doc Records a <code>WorkflowExecutionCancelRequested</code> event in the
@@ -869,10 +869,10 @@ register_workflow_type(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 request_cancel_workflow_execution(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     request_cancel_workflow_execution(Client, Input, []).
 request_cancel_workflow_execution(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RequestCancelWorkflowExecution">>, Input, Options).
 
 %% @doc Used by workers to tell the service that the <a>ActivityTask</a>
@@ -910,10 +910,10 @@ request_cancel_workflow_execution(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 respond_activity_task_canceled(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     respond_activity_task_canceled(Client, Input, []).
 respond_activity_task_canceled(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RespondActivityTaskCanceled">>, Input, Options).
 
 %% @doc Used by workers to tell the service that the <a>ActivityTask</a>
@@ -950,10 +950,10 @@ respond_activity_task_canceled(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 respond_activity_task_completed(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     respond_activity_task_completed(Client, Input, []).
 respond_activity_task_completed(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RespondActivityTaskCompleted">>, Input, Options).
 
 %% @doc Used by workers to tell the service that the <a>ActivityTask</a>
@@ -986,10 +986,10 @@ respond_activity_task_completed(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 respond_activity_task_failed(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     respond_activity_task_failed(Client, Input, []).
 respond_activity_task_failed(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RespondActivityTaskFailed">>, Input, Options).
 
 %% @doc Used by deciders to tell the service that the <a>DecisionTask</a>
@@ -1013,10 +1013,10 @@ respond_activity_task_failed(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 respond_decision_task_completed(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     respond_decision_task_completed(Client, Input, []).
 respond_decision_task_completed(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RespondDecisionTaskCompleted">>, Input, Options).
 
 %% @doc Records a <code>WorkflowExecutionSignaled</code> event in the
@@ -1046,10 +1046,10 @@ respond_decision_task_completed(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 signal_workflow_execution(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     signal_workflow_execution(Client, Input, []).
 signal_workflow_execution(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SignalWorkflowExecution">>, Input, Options).
 
 %% @doc Starts an execution of the workflow type in the specified domain
@@ -1089,10 +1089,10 @@ signal_workflow_execution(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 start_workflow_execution(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_workflow_execution(Client, Input, []).
 start_workflow_execution(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartWorkflowExecution">>, Input, Options).
 
 %% @doc Records a <code>WorkflowExecutionTerminated</code> event and forces
@@ -1124,17 +1124,18 @@ start_workflow_execution(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
 %% IAM to Manage Access to Amazon SWF Workflows</a>.
 terminate_workflow_execution(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     terminate_workflow_execution(Client, Input, []).
 terminate_workflow_execution(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"TerminateWorkflowExecution">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"swf">>},
     Host = aws_util:binary_join([<<"swf.">>,
                                  maps:get(region, Client1),

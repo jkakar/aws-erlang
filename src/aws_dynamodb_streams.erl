@@ -69,10 +69,10 @@
 %% and <code>EndingSequenceNumber</code> are present, the that shared is
 %% closed and can no longer receive more data.
 describe_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_stream(Client, Input, []).
 describe_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStream">>, Input, Options).
 
 %% @doc Retrieves the stream records from a given shard.
@@ -90,10 +90,10 @@ describe_stream(Client, Input, Options)
 %%
 %% </note>
 get_records(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_records(Client, Input, []).
 get_records(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetRecords">>, Input, Options).
 
 %% @doc Returns a shard iterator. A shard iterator provides information about
@@ -106,10 +106,10 @@ get_records(Client, Input, Options)
 %%
 %% </note>
 get_shard_iterator(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_shard_iterator(Client, Input, []).
 get_shard_iterator(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetShardIterator">>, Input, Options).
 
 %% @doc Returns an array of stream ARNs associated with the current account
@@ -121,17 +121,18 @@ get_shard_iterator(Client, Input, Options)
 %%
 %% </note>
 list_streams(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_streams(Client, Input, []).
 list_streams(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListStreams">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"streams.dynamodb">>},
     Host = aws_util:binary_join([<<"streams.dynamodb.">>,
                                  maps:get(region, Client1),

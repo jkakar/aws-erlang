@@ -52,37 +52,37 @@
 %% Creates a trail that specifies the settings for delivery of log data to an
 %% Amazon S3 bucket.
 create_trail(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_trail(Client, Input, []).
 create_trail(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateTrail">>, Input, Options).
 
 %% @doc Deletes a trail.
 delete_trail(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_trail(Client, Input, []).
 delete_trail(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteTrail">>, Input, Options).
 
 %% @doc Retrieves settings for the trail associated with the current region
 %% for your account.
 describe_trails(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_trails(Client, Input, []).
 describe_trails(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTrails">>, Input, Options).
 
 %% @doc Returns a JSON-formatted list of information about the specified
 %% trail. Fields include information on delivery errors, Amazon SNS and
 %% Amazon S3 errors, and start and stop logging times for each trail.
 get_trail_status(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_trail_status(Client, Input, []).
 get_trail_status(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetTrailStatus">>, Input, Options).
 
 %% @doc Looks up API activity events captured by CloudTrail that create,
@@ -101,19 +101,19 @@ get_trail_status(Client, Input, Options)
 %% available for lookup if CloudTrail logging was not enabled when the events
 %% occurred.</important>
 lookup_events(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     lookup_events(Client, Input, []).
 lookup_events(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"LookupEvents">>, Input, Options).
 
 %% @doc Starts the recording of AWS API calls and log file delivery for a
 %% trail.
 start_logging(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_logging(Client, Input, []).
 start_logging(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartLogging">>, Input, Options).
 
 %% @doc Suspends the recording of AWS API calls and log file delivery for the
@@ -121,10 +121,10 @@ start_logging(Client, Input, Options)
 %% action. You can update a trail without stopping it first. This action is
 %% the only way to stop recording.
 stop_logging(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     stop_logging(Client, Input, []).
 stop_logging(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StopLogging">>, Input, Options).
 
 %% @doc From the command line, use <code>update-subscription</code>.
@@ -135,17 +135,18 @@ stop_logging(Client, Input, Options)
 %% previously been a target for CloudTrail log files, an IAM policy exists
 %% for the bucket.
 update_trail(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_trail(Client, Input, []).
 update_trail(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateTrail">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"cloudtrail">>},
     Host = aws_util:binary_join([<<"cloudtrail.">>,
                                  maps:get(region, Client1),

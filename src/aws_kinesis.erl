@@ -47,10 +47,10 @@
 %% <code>AddTagsToStream</code> overwrites any existing tags that correspond
 %% to the specified tag keys.
 add_tags_to_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     add_tags_to_stream(Client, Input, []).
 add_tags_to_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"AddTagsToStream">>, Input, Options).
 
 %% @doc Creates a Amazon Kinesis stream. A stream captures and transports
@@ -60,12 +60,11 @@ add_tags_to_stream(Client, Input, Options)
 %% records in an Amazon Kinesis stream.
 %%
 %% You specify and control the number of shards that a stream is composed of.
-%% Each open shard can support up to 5 read transactions per second, up to a
-%% maximum total of 2 MB of data read per second. Each shard can support up
-%% to 1000 records written per second, up to a maximum total of 1 MB data
-%% written per second. You can add shards to a stream if the amount of data
-%% input increases and you can remove shards if the amount of data input
-%% decreases.
+%% Each shard can support reads up to 5 transactions per second, up to a
+%% maximum data read total of 2 MB per second. Each shard can support writes
+%% up to 1,000 records per second, up to a maximum data write total of 1 MB
+%% per second. You can add shards to a stream if the amount of data input
+%% increases and you can remove shards if the amount of data input decreases.
 %%
 %% The stream name identifies the stream. The name is scoped to the AWS
 %% account used by the application. It is also scoped by region. That is, two
@@ -89,17 +88,17 @@ add_tags_to_stream(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Amazon
 %% Kinesis Limits</a>. If you need to increase this limit, <a
 %% href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">contact
-%% AWS Support</a>
+%% AWS Support</a>.
 %%
 %% You can use <code>DescribeStream</code> to check the stream status, which
 %% is returned in <code>StreamStatus</code>.
 %%
 %% <a>CreateStream</a> has a limit of 5 transactions per second per account.
 create_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_stream(Client, Input, []).
 create_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateStream">>, Input, Options).
 
 %% @doc Deletes a stream and all its shards and data. You must shut down any
@@ -124,10 +123,10 @@ create_stream(Client, Input, Options)
 %%
 %% <a>DeleteStream</a> has a limit of 5 transactions per second per account.
 delete_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_stream(Client, Input, []).
 delete_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteStream">>, Input, Options).
 
 %% @doc Describes the specified stream.
@@ -155,10 +154,10 @@ delete_stream(Client, Input, Options)
 %% <a>DescribeStream</a> has a limit of 10 transactions per second per
 %% account.
 describe_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_stream(Client, Input, []).
 describe_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeStream">>, Input, Options).
 
 %% @doc Gets data records from a shard.
@@ -183,13 +182,11 @@ describe_stream(Client, Input, Options)
 %% is closed, or when the shard iterator reaches the record with the sequence
 %% number or other attribute that marks it as the last record to process.
 %%
-%% Each data record can be up to 50 KB in size, and each shard can read up to
+%% Each data record can be up to 1 MB in size, and each shard can read up to
 %% 2 MB per second. You can ensure that your calls don't exceed the maximum
 %% supported size or throughput by using the <code>Limit</code> parameter to
 %% specify the maximum number of records that <a>GetRecords</a> can return.
-%% Consider your average record size when determining this limit. For
-%% example, if your average record size is 40 KB, you can limit the data
-%% returned to about 1 MB per call by specifying 25 as the limit.
+%% Consider your average record size when determining this limit.
 %%
 %% The size of the data returned by <a>GetRecords</a> will vary depending on
 %% the utilization of the shard. The maximum size of data that
@@ -206,16 +203,24 @@ describe_stream(Client, Input, Options)
 %%
 %% To detect whether the application is falling behind in processing, you can
 %% use the <code>MillisBehindLatest</code> response attribute. You can also
-%% monitor the amount of data in a stream using the CloudWatch metrics. For
-%% more information, see <a
-%% href="http://docs.aws.amazon.com/kinesis/latest/dev/monitoring_with_cloudwatch.html">Monitoring
-%% Amazon Kinesis with Amazon CloudWatch</a> in the <i>Amazon Kinesis
-%% Developer Guide</i>.
+%% monitor the stream using CloudWatch metrics (see <a
+%% href="http://docs.aws.amazon.com/kinesis/latest/dev/monitoring.html">Monitoring
+%% Amazon Kinesis</a> in the <i>Amazon Kinesis Developer Guide</i>).
+%%
+%% Each Amazon Kinesis record includes a value,
+%% <code>ApproximateArrivalTimestamp</code>, that is set when an Amazon
+%% Kinesis stream successfully receives and stores a record. This is commonly
+%% referred to as a server-side timestamp, which is different than a
+%% client-side timestamp, where the timestamp is set when a data producer
+%% creates or sends the record to a stream. The timestamp has millisecond
+%% precision. There are no guarantees about the timestamp accuracy, or that
+%% the timestamp is always increasing. For example, records in a shard or
+%% across a stream might have timestamps that are out of order.
 get_records(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_records(Client, Input, []).
 get_records(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetRecords">>, Input, Options).
 
 %% @doc Gets a shard iterator. A shard iterator expires five minutes after it
@@ -265,10 +270,10 @@ get_records(Client, Input, Options)
 %% <a>GetShardIterator</a> has a limit of 5 transactions per second per
 %% account per open shard.
 get_shard_iterator(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     get_shard_iterator(Client, Input, []).
 get_shard_iterator(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"GetShardIterator">>, Input, Options).
 
 %% @doc Lists your streams.
@@ -290,18 +295,18 @@ get_shard_iterator(Client, Input, Options)
 %%
 %% <a>ListStreams</a> has a limit of 5 transactions per second per account.
 list_streams(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_streams(Client, Input, []).
 list_streams(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListStreams">>, Input, Options).
 
 %% @doc Lists the tags for the specified Amazon Kinesis stream.
 list_tags_for_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_tags_for_stream(Client, Input, []).
 list_tags_for_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTagsForStream">>, Input, Options).
 
 %% @doc Merges two adjacent shards in a stream and combines them into a
@@ -349,17 +354,17 @@ list_tags_for_stream(Client, Input, Options)
 %% <code>MergeShards</code> has limit of 5 transactions per second per
 %% account.
 merge_shards(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     merge_shards(Client, Input, []).
 merge_shards(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"MergeShards">>, Input, Options).
 
-%% @doc Puts (writes) a single data record from a producer into an Amazon
-%% Kinesis stream. Call <code>PutRecord</code> to send data from the producer
-%% into the Amazon Kinesis stream for real-time ingestion and subsequent
-%% processing, one record at a time. Each shard can support up to 1000
-%% records written per second, up to a maximum total of 1 MB data written per
+%% @doc Writes a single data record from a producer into an Amazon Kinesis
+%% stream. Call <code>PutRecord</code> to send data from the producer into
+%% the Amazon Kinesis stream for real-time ingestion and subsequent
+%% processing, one record at a time. Each shard can support writes up to
+%% 1,000 records per second, up to a maximum data write total of 1 MB per
 %% second.
 %%
 %% You must specify the name of the stream that captures, stores, and
@@ -380,7 +385,7 @@ merge_shards(Client, Input, Options)
 %% the partition key to determine the shard by explicitly specifying a hash
 %% value using the <code>ExplicitHashKey</code> parameter. For more
 %% information, see <a
-%% href="http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html">Adding
+%% href="http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
 %% Data to a Stream</a> in the <i>Amazon Kinesis Developer Guide</i>.
 %%
 %% <code>PutRecord</code> returns the shard ID of where the data record was
@@ -389,7 +394,7 @@ merge_shards(Client, Input, Options)
 %% Sequence numbers generally increase over time. To guarantee strictly
 %% increasing ordering, use the <code>SequenceNumberForOrdering</code>
 %% parameter. For more information, see <a
-%% href="http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html">Adding
+%% href="http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
 %% Data to a Stream</a> in the <i>Amazon Kinesis Developer Guide</i>.
 %%
 %% If a <code>PutRecord</code> request cannot be processed because of
@@ -400,22 +405,28 @@ merge_shards(Client, Input, Options)
 %% Data records are accessible for only 24 hours from the time that they are
 %% added to an Amazon Kinesis stream.
 put_record(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_record(Client, Input, []).
 put_record(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutRecord">>, Input, Options).
 
-%% @doc Puts (writes) multiple data records from a producer into an Amazon
-%% Kinesis stream in a single call (also referred to as a
-%% <code>PutRecords</code> request). Use this operation to send data from a
-%% data producer into the Amazon Kinesis stream for real-time ingestion and
-%% processing. Each shard can support up to 1000 records written per second,
-%% up to a maximum total of 1 MB data written per second.
+%% @doc Writes multiple data records from a producer into an Amazon Kinesis
+%% stream in a single call (also referred to as a <code>PutRecords</code>
+%% request). Use this operation to send data from a data producer into the
+%% Amazon Kinesis stream for data ingestion and processing.
+%%
+%% Each <code>PutRecords</code> request can support up to 500 records. Each
+%% record in the request can be as large as 1 MB, up to a limit of 5 MB for
+%% the entire request, including partition keys. Each shard can support
+%% writes up to 1,000 records per second, up to a maximum data write total of
+%% 1 MB per second.
 %%
 %% You must specify the name of the stream that captures, stores, and
 %% transports the data; and an array of request <code>Records</code>, with
-%% each record in the array requiring a partition key and data blob.
+%% each record in the array requiring a partition key and data blob. The
+%% record size limit applies to the total size of the partition key and data
+%% blob.
 %%
 %% The data blob can be any type of data; for example, a segment from a log
 %% file, geographic/location data, website clickstream data, and so on.
@@ -426,7 +437,7 @@ put_record(Client, Input, Options)
 %% and to map associated data records to shards. As a result of this hashing
 %% mechanism, all data records with the same partition key map to the same
 %% shard within the stream. For more information, see <a
-%% href="http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html">Adding
+%% href="http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
 %% Data to a Stream</a> in the <i>Amazon Kinesis Developer Guide</i>.
 %%
 %% Each record in the <code>Records</code> array may include an optional
@@ -434,7 +445,7 @@ put_record(Client, Input, Options)
 %% to shard mapping. This parameter allows a data producer to determine
 %% explicitly the shard where the record is stored. For more information, see
 %% <a
-%% href="http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords">Adding
+%% href="http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-putrecords">Adding
 %% Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Developer
 %% Guide</i>.
 %%
@@ -473,20 +484,20 @@ put_record(Client, Input, Options)
 %% Data records are accessible for only 24 hours from the time that they are
 %% added to an Amazon Kinesis stream.
 put_records(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     put_records(Client, Input, []).
 put_records(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"PutRecords">>, Input, Options).
 
 %% @doc Deletes tags from the specified Amazon Kinesis stream.
 %%
 %% If you specify a tag that does not exist, it is ignored.
 remove_tags_from_stream(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     remove_tags_from_stream(Client, Input, []).
 remove_tags_from_stream(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RemoveTagsFromStream">>, Input, Options).
 
 %% @doc Splits a shard into two new shards in the stream, to increase the
@@ -538,7 +549,7 @@ remove_tags_from_stream(Client, Input, Options)
 %% href="http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Amazon
 %% Kinesis Limits</a>. If you need to increase this limit, <a
 %% href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">contact
-%% AWS Support</a>
+%% AWS Support</a>.
 %%
 %% If you try to operate on too many streams in parallel using
 %% <a>CreateStream</a>, <a>DeleteStream</a>, <a>MergeShards</a> or
@@ -547,17 +558,18 @@ remove_tags_from_stream(Client, Input, Options)
 %% <code>SplitShard</code> has limit of 5 transactions per second per
 %% account.
 split_shard(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     split_shard(Client, Input, []).
 split_shard(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SplitShard">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"kinesis">>},
     Host = aws_util:binary_join([<<"kinesis.">>,
                                  maps:get(region, Client1),

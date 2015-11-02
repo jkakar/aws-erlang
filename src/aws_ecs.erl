@@ -84,10 +84,10 @@
 %% container instance. However, you can create your own cluster with a unique
 %% name with the <code>CreateCluster</code> action.
 create_cluster(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_cluster(Client, Input, []).
 create_cluster(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateCluster">>, Input, Options).
 
 %% @doc Runs and maintains a desired number of tasks from a specified task
@@ -95,10 +95,10 @@ create_cluster(Client, Input, Options)
 %% <code>desiredCount</code>, Amazon ECS will spawn another instantiation of
 %% the task in the specified cluster.
 create_service(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     create_service(Client, Input, []).
 create_service(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"CreateService">>, Input, Options).
 
 %% @doc Deletes the specified cluster. You must deregister all container
@@ -106,18 +106,18 @@ create_service(Client, Input, Options)
 %% container instances in a cluster with <a>ListContainerInstances</a> and
 %% deregister them with <a>DeregisterContainerInstance</a>.
 delete_cluster(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_cluster(Client, Input, []).
 delete_cluster(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteCluster">>, Input, Options).
 
 %% @doc Deletes a specified service within a cluster.
 delete_service(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     delete_service(Client, Input, []).
 delete_service(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeleteService">>, Input, Options).
 
 %% @doc Deregisters an Amazon ECS container instance from the specified
@@ -138,10 +138,10 @@ delete_service(Client, Input, Options)
 %%
 %% </note>
 deregister_container_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_container_instance(Client, Input, []).
 deregister_container_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterContainerInstance">>, Input, Options).
 
 %% @doc Deregisters the specified task definition by family and revision.
@@ -157,36 +157,36 @@ deregister_container_instance(Client, Input, Options)
 %% up to a 10 minute window following deregistration where these restrictions
 %% have not yet taken effect).
 deregister_task_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     deregister_task_definition(Client, Input, []).
 deregister_task_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DeregisterTaskDefinition">>, Input, Options).
 
 %% @doc Describes one or more of your clusters.
 describe_clusters(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_clusters(Client, Input, []).
 describe_clusters(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeClusters">>, Input, Options).
 
 %% @doc Describes Amazon EC2 Container Service container instances. Returns
 %% metadata about registered and remaining resources on each container
 %% instance requested.
 describe_container_instances(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_container_instances(Client, Input, []).
 describe_container_instances(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeContainerInstances">>, Input, Options).
 
 %% @doc Describes the specified services running in your cluster.
 describe_services(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_services(Client, Input, []).
 describe_services(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeServices">>, Input, Options).
 
 %% @doc Describes a task definition. You can specify a <code>family</code>
@@ -199,18 +199,18 @@ describe_services(Client, Input, Options)
 %%
 %% </note>
 describe_task_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_task_definition(Client, Input, []).
 describe_task_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTaskDefinition">>, Input, Options).
 
 %% @doc Describes a specified task or tasks.
 describe_tasks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     describe_tasks(Client, Input, []).
 describe_tasks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DescribeTasks">>, Input, Options).
 
 %% @doc <note>This action is only used by the Amazon EC2 Container Service
@@ -219,34 +219,34 @@ describe_tasks(Client, Input, Options)
 %% </note> Returns an endpoint for the Amazon EC2 Container Service agent to
 %% poll for updates.
 discover_poll_endpoint(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     discover_poll_endpoint(Client, Input, []).
 discover_poll_endpoint(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"DiscoverPollEndpoint">>, Input, Options).
 
 %% @doc Returns a list of existing clusters.
 list_clusters(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_clusters(Client, Input, []).
 list_clusters(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListClusters">>, Input, Options).
 
 %% @doc Returns a list of container instances in a specified cluster.
 list_container_instances(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_container_instances(Client, Input, []).
 list_container_instances(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListContainerInstances">>, Input, Options).
 
 %% @doc Lists the services that are running in a specified cluster.
 list_services(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_services(Client, Input, []).
 list_services(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListServices">>, Input, Options).
 
 %% @doc Returns a list of task definition families that are registered to
@@ -254,10 +254,10 @@ list_services(Client, Input, Options)
 %% have any <code>ACTIVE</code> task definitions). You can filter the results
 %% with the <code>familyPrefix</code> parameter.
 list_task_definition_families(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_task_definition_families(Client, Input, []).
 list_task_definition_families(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTaskDefinitionFamilies">>, Input, Options).
 
 %% @doc Returns a list of task definitions that are registered to your
@@ -265,10 +265,10 @@ list_task_definition_families(Client, Input, Options)
 %% <code>familyPrefix</code> parameter or by status with the
 %% <code>status</code> parameter.
 list_task_definitions(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_task_definitions(Client, Input, []).
 list_task_definitions(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTaskDefinitions">>, Input, Options).
 
 %% @doc Returns a list of tasks for a specified cluster. You can filter the
@@ -276,10 +276,10 @@ list_task_definitions(Client, Input, Options)
 %% desired status of the task with the <code>family</code>,
 %% <code>containerInstance</code>, and <code>desiredStatus</code> parameters.
 list_tasks(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     list_tasks(Client, Input, []).
 list_tasks(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"ListTasks">>, Input, Options).
 
 %% @doc <note>This action is only used by the Amazon EC2 Container Service
@@ -288,10 +288,10 @@ list_tasks(Client, Input, Options)
 %% </note> Registers an Amazon EC2 instance into the specified cluster. This
 %% instance will become available to place containers on.
 register_container_instance(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_container_instance(Client, Input, []).
 register_container_instance(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterContainerInstance">>, Input, Options).
 
 %% @doc Registers a new task definition from the supplied <code>family</code>
@@ -302,10 +302,10 @@ register_container_instance(Client, Input, Options)
 %% ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer
 %% Guide</i>.
 register_task_definition(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     register_task_definition(Client, Input, []).
 register_task_definition(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RegisterTaskDefinition">>, Input, Options).
 
 %% @doc Start a task using random placement and the default Amazon ECS
@@ -317,10 +317,10 @@ register_task_definition(Client, Input, Options)
 %%
 %% </important>
 run_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     run_task(Client, Input, []).
 run_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"RunTask">>, Input, Options).
 
 %% @doc Starts a new task from the specified task definition on the specified
@@ -332,18 +332,18 @@ run_task(Client, Input, Options)
 %%
 %% </important>
 start_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     start_task(Client, Input, []).
 start_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StartTask">>, Input, Options).
 
 %% @doc Stops a running task.
 stop_task(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     stop_task(Client, Input, []).
 stop_task(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"StopTask">>, Input, Options).
 
 %% @doc <note>This action is only used by the Amazon EC2 Container Service
@@ -351,10 +351,10 @@ stop_task(Client, Input, Options)
 %%
 %% </note> Sent to acknowledge that a container changed states.
 submit_container_state_change(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     submit_container_state_change(Client, Input, []).
 submit_container_state_change(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SubmitContainerStateChange">>, Input, Options).
 
 %% @doc <note>This action is only used by the Amazon EC2 Container Service
@@ -362,10 +362,10 @@ submit_container_state_change(Client, Input, Options)
 %%
 %% </note> Sent to acknowledge that a task changed states.
 submit_task_state_change(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     submit_task_state_change(Client, Input, []).
 submit_task_state_change(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"SubmitTaskStateChange">>, Input, Options).
 
 %% @doc Updates the Amazon ECS container agent on a specified container
@@ -383,10 +383,10 @@ submit_task_state_change(Client, Input, Options)
 %% Updating the Amazon ECS Container Agent</a> in the <i>Amazon EC2 Container
 %% Service Developer Guide</i>.
 update_container_agent(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_container_agent(Client, Input, []).
 update_container_agent(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateContainerAgent">>, Input, Options).
 
 %% @doc Modify the desired count or task definition used in a service.
@@ -406,17 +406,18 @@ update_container_agent(Client, Input, Options)
 %% another instantiation of the task used in your service, you can reduce the
 %% desired count of your service by one before modifying the task definition.
 update_service(Client, Input)
-  when is_map(Client), is_map(Input) ->
+  when is_reference(Client), is_map(Input) ->
     update_service(Client, Input, []).
 update_service(Client, Input, Options)
-  when is_map(Client), is_map(Input), is_list(Options) ->
+  when is_reference(Client), is_map(Input), is_list(Options) ->
     request(Client, <<"UpdateService">>, Input, Options).
 
 %%====================================================================
 %% Internal functions
 %%====================================================================
 
-request(Client, Action, Input, Options) ->
+request(CredRef, Action, Input, Options) ->
+    Client = aws_client:get_creds(CredRef),
     Client1 = Client#{service => <<"ecs">>},
     Host = aws_util:binary_join([<<"ecs.">>,
                                  maps:get(region, Client1),
