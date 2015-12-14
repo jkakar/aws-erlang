@@ -341,7 +341,10 @@ handle_response({ok, 200, ResponseHeaders, Client}) ->
     {ok, Result, {200, ResponseHeaders, Client}};
 handle_response({ok, StatusCode, ResponseHeaders, Client}) ->
     {ok, Body} = hackney:body(Client),
-    Reason = maps:get(<<"__type">>, jsx:decode(Body, [return_maps])),
+    Result = jsx:decode(Body, [return_maps]),
+    Type = maps:get(<<"__type">>, Result),
+    Message = maps:get(<<"message">>, Result, <<"">>),
+    Reason = aws_util:binary_join([Type, <<" ">>, Message], <<"">>),
     {error, Reason, {StatusCode, ResponseHeaders, Client}};
 handle_response({error, Reason}) ->
     {error, Reason}.
