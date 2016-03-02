@@ -1,8 +1,8 @@
-[{<<"idna">>,{pkg,<<"idna">>,<<"1.0.2">>},1},
- {<<"erlware_commons">>,{pkg,<<"erlware_commons">>,<<"0.15.0">>},0},
- {<<"ssl_verify_hostname">>,{pkg,<<"ssl_verify_hostname">>,<<"1.0.1">>},1},
+[{<<"erlware_commons">>,{pkg,<<"erlware_commons">>,<<"0.15.0">>},0},
  {<<"hackney">>,{pkg,<<"hackney">>,<<"1.0.6">>},0},
+ {<<"idna">>,{pkg,<<"idna">>,<<"1.0.2">>},1},
  {<<"jsx">>,
   {git,"git://github.com/talentdeficit/jsx.git",
        {ref,"9d4534edc57686f28e16c5b1f6902a7e99c8b035"}},
-  0}].
+  0},
+ {<<"ssl_verify_hostname">>,{pkg,<<"ssl_verify_hostname">>,<<"1.0.1">>},1}].
